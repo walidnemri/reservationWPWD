@@ -2,7 +2,11 @@
 
 return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
     $o = [
-        clone (\Symfony\Component\VarExporter\Internal\Registry::$prototypes['Doctrine\\ORM\\Mapping\\Column'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\Column')),
+        clone (($p = &\Symfony\Component\VarExporter\Internal\Registry::$prototypes)['Doctrine\\ORM\\Mapping\\Column'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\Column')),
+        clone ($p['Symfony\\Component\\Validator\\Constraints\\Length'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Symfony\\Component\\Validator\\Constraints\\Length')),
+        clone ($p['Symfony\\Component\\Validator\\Constraints\\Regex'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Symfony\\Component\\Validator\\Constraints\\Regex')),
+        clone $p['Symfony\\Component\\Validator\\Constraints\\Regex'],
+        clone $p['Symfony\\Component\\Validator\\Constraints\\Regex'],
     ],
     null,
     [
@@ -10,10 +14,44 @@ return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\
             'length' => [
                 255,
             ],
+            'minMessage' => [
+                1 => 'Au moins 6 caractères!',
+            ],
+            'min' => [
+                1 => 6,
+            ],
+            'groups' => [
+                1 => [
+                    'Default',
+                ],
+                [
+                    'Default',
+                ],
+                [
+                    'Default',
+                ],
+                [
+                    'Default',
+                ],
+            ],
+            'message' => [
+                2 => 'Your password must contains a number!',
+                'Your password must contains a special char!',
+                'Your password must contains an uppercase char!',
+            ],
+            'pattern' => [
+                2 => '/\\d/',
+                '/\\W/',
+                '/[A-Z]+/',
+            ],
         ],
     ],
     [
         $o[0],
+        $o[1],
+        $o[2],
+        $o[3],
+        $o[4],
     ],
     []
 ); }];

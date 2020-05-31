@@ -1,6 +1,6 @@
 <?php
 
-namespace ContainerT8zx6So;
+namespace Container6fr3xbw;
 
 use Symfony\Component\DependencyInjection\Argument\RewindableGenerator;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -994,6 +994,7 @@ class App_KernelDevDebugContainer extends Container
             'App\\Repository\\ArtistTypeRepository' => ['privates', 'App\\Repository\\ArtistTypeRepository', 'getArtistTypeRepositoryService', false],
             'App\\Repository\\LocalityRepository' => ['privates', 'App\\Repository\\LocalityRepository', 'getLocalityRepositoryService', false],
             'App\\Repository\\LocationRepository' => ['privates', 'App\\Repository\\LocationRepository', 'getLocationRepositoryService', false],
+            'App\\Repository\\RepresentationRepository' => ['privates', 'App\\Repository\\RepresentationRepository', 'getRepresentationRepositoryService', false],
             'App\\Repository\\ReservationRepository' => ['privates', 'App\\Repository\\ReservationRepository', 'getReservationRepositoryService', false],
             'App\\Repository\\RoleRepository' => ['privates', 'App\\Repository\\RoleRepository', 'getRoleRepositoryService', false],
             'App\\Repository\\ShowRepository' => ['privates', 'App\\Repository\\ShowRepository', 'getShowRepositoryService', false],
@@ -1004,6 +1005,7 @@ class App_KernelDevDebugContainer extends Container
             'App\\Repository\\ArtistTypeRepository' => '?',
             'App\\Repository\\LocalityRepository' => '?',
             'App\\Repository\\LocationRepository' => '?',
+            'App\\Repository\\RepresentationRepository' => '?',
             'App\\Repository\\ReservationRepository' => '?',
             'App\\Repository\\RoleRepository' => '?',
             'App\\Repository\\ShowRepository' => '?',
@@ -1838,6 +1840,24 @@ class App_KernelDevDebugContainer extends Container
     }
 
     /**
+     * Gets the private '.service_locator.9sR9y2F' shared service.
+     *
+     * @return \Symfony\Component\DependencyInjection\ServiceLocator
+     */
+    protected function get_ServiceLocator_9sR9y2FService()
+    {
+        return $this->privates['.service_locator.9sR9y2F'] = new \Symfony\Component\DependencyInjection\Argument\ServiceLocator($this->getService, [
+            'em' => ['services', 'doctrine.orm.default_entity_manager', 'getDoctrine_Orm_DefaultEntityManagerService', false],
+            'encoder' => ['services', 'security.password_encoder', 'getSecurity_PasswordEncoderService', false],
+            'validator' => ['services', 'validator', 'getValidatorService', false],
+        ], [
+            'em' => '?',
+            'encoder' => '?',
+            'validator' => '?',
+        ]);
+    }
+
+    /**
      * Gets the private '.service_locator.Lq2J.x9' shared service.
      *
      * @return \Symfony\Component\DependencyInjection\ServiceLocator
@@ -1880,13 +1900,41 @@ class App_KernelDevDebugContainer extends Container
     }
 
     /**
-     * Gets the private '.service_locator.UqCk2Ss' shared service.
+     * Gets the private '.service_locator.VPb8Zl0' shared service.
      *
      * @return \Symfony\Component\DependencyInjection\ServiceLocator
      */
-    protected function get_ServiceLocator_UqCk2SsService()
+    protected function get_ServiceLocator_VPb8Zl0Service()
     {
-        return $this->privates['.service_locator.UqCk2Ss'] = new \Symfony\Component\DependencyInjection\Argument\ServiceLocator($this->getService, [
+        return $this->privates['.service_locator.VPb8Zl0'] = new \Symfony\Component\DependencyInjection\Argument\ServiceLocator($this->getService, [
+            'user' => ['privates', '.errored..service_locator.VPb8Zl0.App\\Entity\\User', NULL, 'Cannot autowire service ".service_locator.VPb8Zl0": it references class "App\\Entity\\User" but no such service exists.'],
+        ], [
+            'user' => 'App\\Entity\\User',
+        ]);
+    }
+
+    /**
+     * Gets the private '.service_locator.VoyiNh4' shared service.
+     *
+     * @return \Symfony\Component\DependencyInjection\ServiceLocator
+     */
+    protected function get_ServiceLocator_VoyiNh4Service()
+    {
+        return $this->privates['.service_locator.VoyiNh4'] = new \Symfony\Component\DependencyInjection\Argument\ServiceLocator($this->getService, [
+            'localityRepository' => ['privates', 'App\\Repository\\LocalityRepository', 'getLocalityRepositoryService', false],
+        ], [
+            'localityRepository' => 'App\\Repository\\LocalityRepository',
+        ]);
+    }
+
+    /**
+     * Gets the private '.service_locator.XorA079' shared service.
+     *
+     * @return \Symfony\Component\DependencyInjection\ServiceLocator
+     */
+    protected function get_ServiceLocator_XorA079Service()
+    {
+        return $this->privates['.service_locator.XorA079'] = new \Symfony\Component\DependencyInjection\Argument\ServiceLocator($this->getService, [
             'App\\Controller\\ArtistController::show' => ['privates', '.service_locator.dd2XOpi', 'get_ServiceLocator_Dd2XOpiService', false],
             'App\\Controller\\LocalityController::delete' => ['privates', '.service_locator.QExU2Dt', 'get_ServiceLocator_QExU2DtService', false],
             'App\\Controller\\LocalityController::edit' => ['privates', '.service_locator.QExU2Dt', 'get_ServiceLocator_QExU2DtService', false],
@@ -1898,7 +1946,7 @@ class App_KernelDevDebugContainer extends Container
             'App\\Controller\\ReservationController::show' => ['privates', '.service_locator.vIgRI9F', 'get_ServiceLocator_VIgRI9FService', false],
             'App\\Controller\\RoleController::show' => ['privates', '.service_locator.iLtGZiL', 'get_ServiceLocator_ILtGZiLService', false],
             'App\\Controller\\SecurityController::login' => ['privates', '.service_locator.q6jLs_L', 'get_ServiceLocator_Q6jLsLService', false],
-            'App\\Controller\\SecurityController::register' => ['privates', '.service_locator.eNzVNj3', 'get_ServiceLocator_ENzVNj3Service', false],
+            'App\\Controller\\SecurityController::register' => ['privates', '.service_locator.9sR9y2F', 'get_ServiceLocator_9sR9y2FService', false],
             'App\\Controller\\TypeController::show' => ['privates', '.service_locator.TYEgE62', 'get_ServiceLocator_TYEgE62Service', false],
             'App\\Controller\\UserController::delete' => ['privates', '.service_locator.VPb8Zl0', 'get_ServiceLocator_VPb8Zl0Service', false],
             'App\\Controller\\UserController::edit' => ['privates', '.service_locator.VPb8Zl0', 'get_ServiceLocator_VPb8Zl0Service', false],
@@ -1915,7 +1963,7 @@ class App_KernelDevDebugContainer extends Container
             'App\\Controller\\ReservationController:show' => ['privates', '.service_locator.vIgRI9F', 'get_ServiceLocator_VIgRI9FService', false],
             'App\\Controller\\RoleController:show' => ['privates', '.service_locator.iLtGZiL', 'get_ServiceLocator_ILtGZiLService', false],
             'App\\Controller\\SecurityController:login' => ['privates', '.service_locator.q6jLs_L', 'get_ServiceLocator_Q6jLsLService', false],
-            'App\\Controller\\SecurityController:register' => ['privates', '.service_locator.eNzVNj3', 'get_ServiceLocator_ENzVNj3Service', false],
+            'App\\Controller\\SecurityController:register' => ['privates', '.service_locator.9sR9y2F', 'get_ServiceLocator_9sR9y2FService', false],
             'App\\Controller\\TypeController:show' => ['privates', '.service_locator.TYEgE62', 'get_ServiceLocator_TYEgE62Service', false],
             'App\\Controller\\UserController:delete' => ['privates', '.service_locator.VPb8Zl0', 'get_ServiceLocator_VPb8Zl0Service', false],
             'App\\Controller\\UserController:edit' => ['privates', '.service_locator.VPb8Zl0', 'get_ServiceLocator_VPb8Zl0Service', false],
@@ -1960,34 +2008,6 @@ class App_KernelDevDebugContainer extends Container
     }
 
     /**
-     * Gets the private '.service_locator.VPb8Zl0' shared service.
-     *
-     * @return \Symfony\Component\DependencyInjection\ServiceLocator
-     */
-    protected function get_ServiceLocator_VPb8Zl0Service()
-    {
-        return $this->privates['.service_locator.VPb8Zl0'] = new \Symfony\Component\DependencyInjection\Argument\ServiceLocator($this->getService, [
-            'user' => ['privates', '.errored..service_locator.VPb8Zl0.App\\Entity\\User', NULL, 'Cannot autowire service ".service_locator.VPb8Zl0": it references class "App\\Entity\\User" but no such service exists.'],
-        ], [
-            'user' => 'App\\Entity\\User',
-        ]);
-    }
-
-    /**
-     * Gets the private '.service_locator.VoyiNh4' shared service.
-     *
-     * @return \Symfony\Component\DependencyInjection\ServiceLocator
-     */
-    protected function get_ServiceLocator_VoyiNh4Service()
-    {
-        return $this->privates['.service_locator.VoyiNh4'] = new \Symfony\Component\DependencyInjection\Argument\ServiceLocator($this->getService, [
-            'localityRepository' => ['privates', 'App\\Repository\\LocalityRepository', 'getLocalityRepositoryService', false],
-        ], [
-            'localityRepository' => 'App\\Repository\\LocalityRepository',
-        ]);
-    }
-
-    /**
      * Gets the private '.service_locator.Yz6wLV1' shared service.
      *
      * @return \Symfony\Component\DependencyInjection\ServiceLocator
@@ -2012,22 +2032,6 @@ class App_KernelDevDebugContainer extends Container
             'artist' => ['privates', '.errored..service_locator.dd2XOpi.App\\Entity\\Artist', NULL, 'Cannot autowire service ".service_locator.dd2XOpi": it references class "App\\Entity\\Artist" but no such service exists.'],
         ], [
             'artist' => 'App\\Entity\\Artist',
-        ]);
-    }
-
-    /**
-     * Gets the private '.service_locator.eNzVNj3' shared service.
-     *
-     * @return \Symfony\Component\DependencyInjection\ServiceLocator
-     */
-    protected function get_ServiceLocator_ENzVNj3Service()
-    {
-        return $this->privates['.service_locator.eNzVNj3'] = new \Symfony\Component\DependencyInjection\Argument\ServiceLocator($this->getService, [
-            'em' => ['services', 'doctrine.orm.default_entity_manager', 'getDoctrine_Orm_DefaultEntityManagerService', false],
-            'encoder' => ['services', 'security.password_encoder', 'getSecurity_PasswordEncoderService', false],
-        ], [
-            'em' => '?',
-            'encoder' => '?',
         ]);
     }
 
@@ -2231,6 +2235,23 @@ class App_KernelDevDebugContainer extends Container
         include_once \dirname(__DIR__, 4).'/src/Repository/LocationRepository.php';
 
         return $this->privates['App\\Repository\\LocationRepository'] = new \App\Repository\LocationRepository(($this->services['doctrine'] ?? $this->getDoctrineService()));
+    }
+
+    /**
+     * Gets the private 'App\Repository\RepresentationRepository' shared autowired service.
+     *
+     * @return \App\Repository\RepresentationRepository
+     */
+    protected function getRepresentationRepositoryService()
+    {
+        include_once \dirname(__DIR__, 4).'/vendor/doctrine/persistence/lib/Doctrine/Persistence/ObjectRepository.php';
+        include_once \dirname(__DIR__, 4).'/vendor/doctrine/collections/lib/Doctrine/Common/Collections/Selectable.php';
+        include_once \dirname(__DIR__, 4).'/vendor/doctrine/orm/lib/Doctrine/ORM/EntityRepository.php';
+        include_once \dirname(__DIR__, 4).'/vendor/doctrine/doctrine-bundle/Repository/ServiceEntityRepositoryInterface.php';
+        include_once \dirname(__DIR__, 4).'/vendor/doctrine/doctrine-bundle/Repository/ServiceEntityRepository.php';
+        include_once \dirname(__DIR__, 4).'/src/Repository/RepresentationRepository.php';
+
+        return $this->privates['App\\Repository\\RepresentationRepository'] = new \App\Repository\RepresentationRepository(($this->services['doctrine'] ?? $this->getDoctrineService()));
     }
 
     /**
@@ -3080,7 +3101,7 @@ class App_KernelDevDebugContainer extends Container
         include_once \dirname(__DIR__, 4).'/vendor/symfony/http-kernel/Controller/ArgumentResolver/TraceableValueResolver.php';
         include_once \dirname(__DIR__, 4).'/vendor/symfony/http-kernel/Controller/ArgumentResolver/NotTaggedControllerValueResolver.php';
 
-        return $this->privates['debug.argument_resolver.not_tagged_controller'] = new \Symfony\Component\HttpKernel\Controller\ArgumentResolver\TraceableValueResolver(new \Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver(($this->privates['.service_locator.UqCk2Ss'] ?? $this->get_ServiceLocator_UqCk2SsService())), ($this->privates['debug.stopwatch'] ?? ($this->privates['debug.stopwatch'] = new \Symfony\Component\Stopwatch\Stopwatch(true))));
+        return $this->privates['debug.argument_resolver.not_tagged_controller'] = new \Symfony\Component\HttpKernel\Controller\ArgumentResolver\TraceableValueResolver(new \Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver(($this->privates['.service_locator.XorA079'] ?? $this->get_ServiceLocator_XorA079Service())), ($this->privates['debug.stopwatch'] ?? ($this->privates['debug.stopwatch'] = new \Symfony\Component\Stopwatch\Stopwatch(true))));
     }
 
     /**
@@ -3122,7 +3143,7 @@ class App_KernelDevDebugContainer extends Container
         include_once \dirname(__DIR__, 4).'/vendor/symfony/http-kernel/Controller/ArgumentResolver/TraceableValueResolver.php';
         include_once \dirname(__DIR__, 4).'/vendor/symfony/http-kernel/Controller/ArgumentResolver/ServiceValueResolver.php';
 
-        return $this->privates['debug.argument_resolver.service'] = new \Symfony\Component\HttpKernel\Controller\ArgumentResolver\TraceableValueResolver(new \Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver(($this->privates['.service_locator.UqCk2Ss'] ?? $this->get_ServiceLocator_UqCk2SsService())), ($this->privates['debug.stopwatch'] ?? ($this->privates['debug.stopwatch'] = new \Symfony\Component\Stopwatch\Stopwatch(true))));
+        return $this->privates['debug.argument_resolver.service'] = new \Symfony\Component\HttpKernel\Controller\ArgumentResolver\TraceableValueResolver(new \Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver(($this->privates['.service_locator.XorA079'] ?? $this->get_ServiceLocator_XorA079Service())), ($this->privates['debug.stopwatch'] ?? ($this->privates['debug.stopwatch'] = new \Symfony\Component\Stopwatch\Stopwatch(true))));
     }
 
     /**

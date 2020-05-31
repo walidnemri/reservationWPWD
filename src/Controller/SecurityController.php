@@ -14,6 +14,8 @@ use App\Form\UserType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
+
 
 
 class SecurityController extends AbstractController
@@ -46,7 +48,7 @@ class SecurityController extends AbstractController
     /**
      * @Route("/signin", name="app_signin")
      */
-    public function register(Request $request ,EntityManagerInterface $em ,UserPasswordEncoderInterface $encoder){
+    public function register(Request $request ,EntityManagerInterface $em ,UserPasswordEncoderInterface $encoder, ValidatorInterface $validator){
         $title = 'Inscription';
         $user = new User();
         //$roleAdmin = new Role();
@@ -60,18 +62,34 @@ class SecurityController extends AbstractController
         //dd($request);
         if ($request->isMethod('POST')) {
 
+
             if ($form->isSubmitted() && $form->isValid()) {
+                $errors = $validator->validate($user);
+
+                if (count($errors) === 0) {
+                    /*
+                     * Uses a __toString method on the $errors variable which is a
+                     * ConstraintViolationList object. This gives us a nice string
+                     * for debugging.
+                     */
+                    $plainPassword =$form->get('password')->getData();
+                    $encoded = $encoder->encodePassword($user, $plainPassword);
+                    //$user->setFirstname($request->request->get($form->getName())['firstname']);
+                    //$user->setLastname($request->request->get($form->getName())['lastname']);
+                    $user->setPassword($encoded);
+
+                } else {
+                    $errorsString = (string) $errors;
+            
+                    return new Response($errorsString);
+                }
 
 
             //dd($user);
             //dd($request->request->get($form->getName())['roles']);
             
             //$form->submit($request->request->get($form->getName()));
-            $plainPassword =$form->get('password')->getData();
-            $encoded = $encoder->encodePassword($user, $plainPassword);
-            //$user->setFirstname($request->request->get($form->getName())['firstname']);
-            //$user->setLastname($request->request->get($form->getName())['lastname']);
-            $user->setPassword($encoded);
+   
             $user->addRole($form->get('user_roles')->getData());
             //$user->setEmail($request->request->get($form->getName())['email']);
             //$user->setLangue('fr');

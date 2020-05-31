@@ -32,6 +32,10 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Length(min=6, minMessage="Au moins 6 caractères!")
+     * @Assert\Regex(pattern = "/\d/", message="Your password must contains a number!")
+     * @Assert\Regex(pattern = "/\W/", message="Your password must contains a special char!")
+     * @Assert\Regex(pattern = "/[A-Z]+/", message="Your password must contains an uppercase char!")
      */
     private $password;
 
@@ -96,6 +100,7 @@ class User implements UserInterface
         return (string) $this->password;
     }
 
+    
     public function setPassword(string $password): self
     {
         $this->password = $password;
