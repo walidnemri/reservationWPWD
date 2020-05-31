@@ -151,41 +151,53 @@ class __TwigTemplate_23872989d73f227dbe6bc1854502c40323a7ab5d66f48da453af4d6d74d
                 // line 31
                 echo "                <li>";
                 echo twig_escape_filter($this->env, twig_date_format_filter($this->env, twig_get_attribute($this->env, $this->source, $context["representation"], "schedule", [], "any", false, false, false, 31), "d/m/Y G:i:s"), "html", null, true);
-                echo "</li>              
+                echo "</li>
+                  ";
+                // line 32
+                echo                 $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["formReservation"]) || array_key_exists("formReservation", $context) ? $context["formReservation"] : (function () { throw new RuntimeError('Variable "formReservation" does not exist.', 32, $this->source); })()), 'form_start');
+                echo "
+                  ";
+                // line 33
+                echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["formReservation"]) || array_key_exists("formReservation", $context) ? $context["formReservation"] : (function () { throw new RuntimeError('Variable "formReservation" does not exist.', 33, $this->source); })()), "places", [], "any", false, false, false, 33), 'row');
+                echo "
+                  ";
+                // line 34
+                echo                 $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["formReservation"]) || array_key_exists("formReservation", $context) ? $context["formReservation"] : (function () { throw new RuntimeError('Variable "formReservation" does not exist.', 34, $this->source); })()), 'form_end');
+                echo "            
             ";
             }
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['representation'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 33
+            // line 36
             echo "        </ul>
         ";
         } else {
-            // line 35
+            // line 38
             echo "        <p>Aucune représentation</p>
         ";
         }
-        // line 37
+        // line 40
         echo "        
          <h2>Liste des artistes</h2>
         ";
-        // line 39
-        if (0 <= twig_compare(twig_length_filter($this->env, (isset($context["collaborateurs"]) || array_key_exists("collaborateurs", $context) ? $context["collaborateurs"] : (function () { throw new RuntimeError('Variable "collaborateurs" does not exist.', 39, $this->source); })())), 1)) {
-            // line 40
+        // line 42
+        if (0 <= twig_compare(twig_length_filter($this->env, (isset($context["collaborateurs"]) || array_key_exists("collaborateurs", $context) ? $context["collaborateurs"] : (function () { throw new RuntimeError('Variable "collaborateurs" does not exist.', 42, $this->source); })())), 1)) {
+            // line 43
             echo "        
         ";
-            // line 41
+            // line 44
             $context['_parent'] = $context;
-            $context['_seq'] = twig_ensure_traversable(twig_get_array_keys_filter((isset($context["collaborateurs"]) || array_key_exists("collaborateurs", $context) ? $context["collaborateurs"] : (function () { throw new RuntimeError('Variable "collaborateurs" does not exist.', 41, $this->source); })())));
+            $context['_seq'] = twig_ensure_traversable(twig_get_array_keys_filter((isset($context["collaborateurs"]) || array_key_exists("collaborateurs", $context) ? $context["collaborateurs"] : (function () { throw new RuntimeError('Variable "collaborateurs" does not exist.', 44, $this->source); })())));
             foreach ($context['_seq'] as $context["_key"] => $context["key"]) {
-                // line 42
+                // line 45
                 echo "        <p>";
                 echo twig_escape_filter($this->env, twig_capitalize_string_filter($this->env, $context["key"]), "html", null, true);
                 echo ": 
             ";
-                // line 43
+                // line 46
                 $context['_parent'] = $context;
-                $context['_seq'] = twig_ensure_traversable(twig_get_attribute($this->env, $this->source, (isset($context["collaborateurs"]) || array_key_exists("collaborateurs", $context) ? $context["collaborateurs"] : (function () { throw new RuntimeError('Variable "collaborateurs" does not exist.', 43, $this->source); })()), $context["key"], [], "array", false, false, false, 43));
+                $context['_seq'] = twig_ensure_traversable(twig_get_attribute($this->env, $this->source, (isset($context["collaborateurs"]) || array_key_exists("collaborateurs", $context) ? $context["collaborateurs"] : (function () { throw new RuntimeError('Variable "collaborateurs" does not exist.', 46, $this->source); })()), $context["key"], [], "array", false, false, false, 46));
                 $context['loop'] = [
                   'parent' => $context['_parent'],
                   'index0' => 0,
@@ -200,14 +212,14 @@ class __TwigTemplate_23872989d73f227dbe6bc1854502c40323a7ab5d66f48da453af4d6d74d
                     $context['loop']['last'] = 1 === $length;
                 }
                 foreach ($context['_seq'] as $context["_key"] => $context["value"]) {
-                    // line 44
+                    // line 47
                     echo "                ";
                     echo twig_escape_filter($this->env, $context["value"], "html", null, true);
-                    if (0 === twig_compare(twig_get_attribute($this->env, $this->source, $context["loop"], "index", [], "any", false, false, false, 44), (twig_get_attribute($this->env, $this->source, $context["loop"], "length", [], "any", false, false, false, 44) - 1))) {
+                    if (0 === twig_compare(twig_get_attribute($this->env, $this->source, $context["loop"], "index", [], "any", false, false, false, 47), (twig_get_attribute($this->env, $this->source, $context["loop"], "length", [], "any", false, false, false, 47) - 1))) {
                         echo " et 
             ";
-                    } elseif ( !twig_get_attribute($this->env, $this->source,                     // line 45
-$context["loop"], "last", [], "any", false, false, false, 45)) {
+                    } elseif ( !twig_get_attribute($this->env, $this->source,                     // line 48
+$context["loop"], "last", [], "any", false, false, false, 48)) {
                         echo ", ";
                     }
                     echo "           
@@ -224,21 +236,21 @@ $context["loop"], "last", [], "any", false, false, false, 45)) {
                 $_parent = $context['_parent'];
                 unset($context['_seq'], $context['_iterated'], $context['_key'], $context['value'], $context['_parent'], $context['loop']);
                 $context = array_intersect_key($context, $_parent) + $_parent;
-                // line 47
+                // line 50
                 echo "        </p>
         ";
             }
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['key'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 49
+            // line 52
             echo "        ";
         } else {
-            // line 50
+            // line 53
             echo "        <p>Aucun artiste</p>
         ";
         }
-        // line 52
+        // line 55
         echo "        
 ";
         
@@ -261,7 +273,7 @@ $context["loop"], "last", [], "any", false, false, false, 45)) {
 
     public function getDebugInfo()
     {
-        return array (  242 => 52,  238 => 50,  235 => 49,  228 => 47,  210 => 45,  204 => 44,  187 => 43,  182 => 42,  178 => 41,  175 => 40,  173 => 39,  169 => 37,  165 => 35,  161 => 33,  152 => 31,  148 => 30,  145 => 29,  143 => 28,  139 => 26,  135 => 24,  131 => 22,  129 => 21,  124 => 19,  121 => 18,  115 => 16,  113 => 15,  110 => 14,  106 => 12,  98 => 10,  96 => 9,  91 => 7,  88 => 6,  78 => 5,  59 => 3,  36 => 1,);
+        return array (  254 => 55,  250 => 53,  247 => 52,  240 => 50,  222 => 48,  216 => 47,  199 => 46,  194 => 45,  190 => 44,  187 => 43,  185 => 42,  181 => 40,  177 => 38,  173 => 36,  165 => 34,  161 => 33,  157 => 32,  152 => 31,  148 => 30,  145 => 29,  143 => 28,  139 => 26,  135 => 24,  131 => 22,  129 => 21,  124 => 19,  121 => 18,  115 => 16,  113 => 15,  110 => 14,  106 => 12,  98 => 10,  96 => 9,  91 => 7,  88 => 6,  78 => 5,  59 => 3,  36 => 1,);
     }
 
     public function getSourceContext()
@@ -296,7 +308,10 @@ $context["loop"], "last", [], "any", false, false, false, 45)) {
         {% if show.representations|length>=1 %}
         <ul>
             {% for representation in show.representations %}
-                <li>{{ representation.schedule|date('d/m/Y G:i:s') }}</li>              
+                <li>{{ representation.schedule|date('d/m/Y G:i:s') }}</li>
+                  {{ form_start(formReservation) }}
+                  {{ form_row(formReservation.places) }}
+                  {{ form_end(formReservation) }}            
             {% endfor %}
         </ul>
         {% else %}

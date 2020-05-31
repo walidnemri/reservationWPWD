@@ -10,6 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use App\Entity\Role;
 
 class UserType extends AbstractType
@@ -33,11 +34,10 @@ class UserType extends AbstractType
                     'Anglais' => 'en',
                 ]
             ])
-            ->add('roles', ChoiceType::class, [
-                'choices' => [
-                    'admin' => new Role('admin'),
-                    'user' => new Role('user'),
-                ],
+            ->add('user_roles', EntityType::class, [
+               'class'=> Role::class,
+               'choice_label' => 'Role',
+               'mapped' => false
             ])
             ->add('password',PasswordType::class)
             ->add('save', SubmitType::class)

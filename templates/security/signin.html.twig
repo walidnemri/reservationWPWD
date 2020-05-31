@@ -4,7 +4,11 @@
 
 {% block body %}
     <h2>{{ title|upper }}</h2>
-    
+
+    {{ form_start(formRegister) }}
+    <div class="form-control">
     {{ form(formRegister) }}
+    </div>
+    {{ form_end(formRegister) }}
 
 {% endblock %}

@@ -28,7 +28,10 @@
         {% if show.representations|length>=1 %}
         <ul>
             {% for representation in show.representations %}
-                <li>{{ representation.schedule|date('d/m/Y G:i:s') }}</li>              
+                <li>{{ representation.schedule|date('d/m/Y G:i:s') }}</li>
+                  {{ form_start(formReservation) }}
+                  {{ form_row(formReservation.places) }}
+                  {{ form_end(formReservation) }}            
             {% endfor %}
         </ul>
         {% else %}

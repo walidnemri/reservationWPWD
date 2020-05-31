@@ -13,6 +13,7 @@ use App\Entity\Role;
 use App\Form\UserType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 
 class SecurityController extends AbstractController
@@ -45,27 +46,46 @@ class SecurityController extends AbstractController
     /**
      * @Route("/signin", name="app_signin")
      */
-    public function register(Request $request ,EntityManagerInterface $em){
+    public function register(Request $request ,EntityManagerInterface $em ,UserPasswordEncoderInterface $encoder){
         $title = 'Inscription';
         $user = new User();
-        $roleAdmin = new Role();
-        $roleAdmin->setRole('admin');
+        //$roleAdmin = new Role();
+        //$roleAdmin->setRole('admin');
        // dd( $roleAdmin);
-        $user->addRole($roleAdmin);
+        //$user->addRole($roleAdmin);
         
         $form = $this->createForm(UserType::class,$user);
         
         $form->handleRequest($request);
         //dd($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            // perform some action...
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($reservation);
-            $entityManager->flush();
-            dd( $roleAdmin);
-            //return $this->redirectToRoute('task_success');
+        if ($request->isMethod('POST')) {
+
+            if ($form->isSubmitted() && $form->isValid()) {
+
+
+            //dd($user);
+            //dd($request->request->get($form->getName())['roles']);
+            
+            //$form->submit($request->request->get($form->getName()));
+            $plainPassword =$form->get('password')->getData();
+            $encoded = $encoder->encodePassword($user, $plainPassword);
+            //$user->setFirstname($request->request->get($form->getName())['firstname']);
+            //$user->setLastname($request->request->get($form->getName())['lastname']);
+            $user->setPassword($encoded);
+            $user->addRole($form->get('user_roles')->getData());
+            //$user->setEmail($request->request->get($form->getName())['email']);
+            //$user->setLangue('fr');
+                //dd($form->get('roles')->getData());
+                // perform some action...
+                $entityManager = $this->getDoctrine()->getManager();
+                //dd($user);
+                $entityManager->persist($user);
+                $entityManager->flush();
+                //return $this->redirectToRoute('task_success');
+            }
+        
         }
-    
+
         return $this->render('security/signin.html.twig',[
             'title' => $title,
             'formRegister' => $form->createView()

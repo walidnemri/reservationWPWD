@@ -116,6 +116,7 @@
     <parameter key="serializer.mapping.cache.prefix"></parameter>
     <parameter key="twig.form.resources" type="collection">
       <parameter>form_div_layout.html.twig</parameter>
+      <parameter>bootstrap_4_layout.html.twig</parameter>
     </parameter>
     <parameter key="twig.default_path">/Applications/XAMPP/xamppfiles/htdocs/reservationsWPWD/templates</parameter>
     <parameter key="doctrine.dbal.logger.chain.class">Doctrine\DBAL\Logging\LoggerChain</parameter>
@@ -434,6 +435,10 @@
       <argument type="service" id="doctrine"/>
     </service>
     <service id="App\Repository\LocationRepository" class="App\Repository\LocationRepository" autowire="true" autoconfigure="true">
+      <tag name="doctrine.repository_service"/>
+      <argument type="service" id="doctrine"/>
+    </service>
+    <service id="App\Repository\RepresentationRepository" class="App\Repository\RepresentationRepository" autowire="true" autoconfigure="true">
       <tag name="doctrine.repository_service"/>
       <argument type="service" id="doctrine"/>
     </service>
@@ -3554,7 +3559,7 @@
       <factory class="Doctrine\ORM\EntityManager" method="create"/>
     </service>
     <service id="doctrine.orm.container_repository_factory" class="Doctrine\Bundle\DoctrineBundle\Repository\ContainerRepositoryFactory" public="false">
-      <argument type="service" id=".service_locator.smf44gV"/>
+      <argument type="service" id=".service_locator.8zsy8lL"/>
     </service>
     <service id="doctrine.orm.manager_configurator.abstract" class="Doctrine\Bundle\DoctrineBundle\ManagerConfigurator" abstract="true">
       <argument type="collection"/>
@@ -4914,6 +4919,8 @@
     <service id=".abstract.instanceof.App\Repository\LocalityRepository" class="App\Repository\LocalityRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\LocationRepository" class="App\Repository\LocationRepository" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Repository\LocationRepository" class="App\Repository\LocationRepository" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\RepresentationRepository" class="App\Repository\RepresentationRepository" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Repository\RepresentationRepository" class="App\Repository\RepresentationRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\ReservationRepository" class="App\Repository\ReservationRepository" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Repository\ReservationRepository" class="App\Repository\ReservationRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\RoleRepository" class="App\Repository\RoleRepository" autowire="true" abstract="true"/>
@@ -5176,10 +5183,11 @@
         <argument key="authenticationUtils" type="service" id="security.authentication_utils"/>
       </argument>
     </service>
-    <service id=".service_locator._CDY2gJ" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id=".service_locator.eNzVNj3" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="em" type="service" id="doctrine.orm.default_entity_manager"/>
+        <argument key="encoder" type="service" id="security.user_password_encoder.generic"/>
       </argument>
     </service>
     <service id=".service_locator.TYEgE62" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
@@ -5200,7 +5208,7 @@
         <argument key="user" type="service" id=".errored..service_locator.VPb8Zl0.App\Entity\User"/>
       </argument>
     </service>
-    <service id=".service_locator.FuOmDoW" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id=".service_locator.UqCk2Ss" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Controller\ArtistController::show" type="service" id=".service_locator.dd2XOpi"/>
@@ -5214,7 +5222,7 @@
         <argument key="App\Controller\ReservationController::show" type="service" id=".service_locator.vIgRI9F"/>
         <argument key="App\Controller\RoleController::show" type="service" id=".service_locator.iLtGZiL"/>
         <argument key="App\Controller\SecurityController::login" type="service" id=".service_locator.q6jLs_L"/>
-        <argument key="App\Controller\SecurityController::register" type="service" id=".service_locator._CDY2gJ"/>
+        <argument key="App\Controller\SecurityController::register" type="service" id=".service_locator.eNzVNj3"/>
         <argument key="App\Controller\TypeController::show" type="service" id=".service_locator.TYEgE62"/>
         <argument key="App\Controller\UserController::delete" type="service" id=".service_locator.VPb8Zl0"/>
         <argument key="App\Controller\UserController::edit" type="service" id=".service_locator.VPb8Zl0"/>
@@ -5231,7 +5239,7 @@
         <argument key="App\Controller\ReservationController:show" type="service" id=".service_locator.vIgRI9F"/>
         <argument key="App\Controller\RoleController:show" type="service" id=".service_locator.iLtGZiL"/>
         <argument key="App\Controller\SecurityController:login" type="service" id=".service_locator.q6jLs_L"/>
-        <argument key="App\Controller\SecurityController:register" type="service" id=".service_locator._CDY2gJ"/>
+        <argument key="App\Controller\SecurityController:register" type="service" id=".service_locator.eNzVNj3"/>
         <argument key="App\Controller\TypeController:show" type="service" id=".service_locator.TYEgE62"/>
         <argument key="App\Controller\UserController:delete" type="service" id=".service_locator.VPb8Zl0"/>
         <argument key="App\Controller\UserController:edit" type="service" id=".service_locator.VPb8Zl0"/>
@@ -5322,13 +5330,14 @@
         <argument key="doctrine.orm.default_listeners.attach_entity_listeners" type="service" id="doctrine.orm.default_listeners.attach_entity_listeners"/>
       </argument>
     </service>
-    <service id=".service_locator.smf44gV" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id=".service_locator.8zsy8lL" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Repository\ArtistRepository" type="service" id="App\Repository\ArtistRepository"/>
         <argument key="App\Repository\ArtistTypeRepository" type="service" id="App\Repository\ArtistTypeRepository"/>
         <argument key="App\Repository\LocalityRepository" type="service" id="App\Repository\LocalityRepository"/>
         <argument key="App\Repository\LocationRepository" type="service" id="App\Repository\LocationRepository"/>
+        <argument key="App\Repository\RepresentationRepository" type="service" id="App\Repository\RepresentationRepository"/>
         <argument key="App\Repository\ReservationRepository" type="service" id="App\Repository\ReservationRepository"/>
         <argument key="App\Repository\RoleRepository" type="service" id="App\Repository\RoleRepository"/>
         <argument key="App\Repository\ShowRepository" type="service" id="App\Repository\ShowRepository"/>
@@ -5737,12 +5746,12 @@
       <argument type="service" id="security.token_storage"/>
     </service>
     <service id="debug.argument_resolver.service.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver" public="false">
-      <argument type="service" id=".service_locator.FuOmDoW"/>
+      <argument type="service" id=".service_locator.UqCk2Ss"/>
     </service>
     <service id="debug.argument_resolver.default.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver" public="false"/>
     <service id="debug.argument_resolver.variadic.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\VariadicValueResolver" public="false"/>
     <service id="debug.argument_resolver.not_tagged_controller.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver" public="false">
-      <argument type="service" id=".service_locator.FuOmDoW"/>
+      <argument type="service" id=".service_locator.UqCk2Ss"/>
     </service>
     <service id=".debug.http_client.inner" class="Symfony\Contracts\HttpClient\HttpClientInterface" public="false">
       <argument type="collection"/>
@@ -6126,7 +6135,7 @@
     <service id="Psr\Log\LoggerInterface" alias="monolog.logger" public="false"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.CmORmuK" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem" public="false"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.FuOmDoW"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.UqCk2Ss"/>
     <service id="twig.loader" alias="twig.loader.native_filesystem"/>
     <service id="Psr\Log\LoggerInterface $requestLogger" alias="monolog.logger.request"/>
     <service id="Psr\Log\LoggerInterface $consoleLogger" alias="monolog.logger.console"/>
