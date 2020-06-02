@@ -7,6 +7,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Show;
 use App\Entity\Reservation;
 use App\Form\ReservationType;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 
 class ShowController extends AbstractController
@@ -28,7 +29,7 @@ class ShowController extends AbstractController
     /**
      * @Route("/show/{id}", name="show_show")
      */
-    public function show($id, Request $request)
+    public function show($id, Request $request, EntityManagerInterface $em )
     {
         $repository = $this->getDoctrine()->getRepository(Show::class);
         $show = $repository->find($id);
@@ -44,6 +45,17 @@ class ShowController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $reservation->setUser($this->getUser());
+           
+            //Redirection vers Reservation.pay
+            //$this->redirectToRoute('reservation_pay',['reservation'=>$reservation]);
+            $entityManager = $this->getDoctrine()->getManager();
+            //dd($user);
+            $entityManager->persist($reservation);
+            $entityManager->flush();
+            return $this->render('reservation/pay.html.twig', [
+             'reservation' => $reservation,
+            ]);
         }
     
     
@@ -53,4 +65,35 @@ class ShowController extends AbstractController
             'formReservation'=>$form->createView(),
         ]);
     }
+
+     /**
+     * @Route("/show/{id}", name="show_pay")
+     */
+
+     /*
+    public function pay($id, Request $request)
+    {
+
+        //$repository = $this->getDoctrine()->getRepository(Reservation::class);
+
+        $reservation = new Reservation();
+        
+        $form = $this->createForm(ReservationType::class,$reservation);
+
+        $form->handleRequest($request);
+        
+        if ($form->isSubmitted() && $form->isValid()) {
+           //Associer l'utilisateur en cours à la réservation
+           $reservation->setUser($this->getUser());
+           
+           //Redirection vers Reservation.pay
+           //$this->redirectToRoute('reservation_pay',['reservation'=>$reservation]);
+           return $this->render('reservation/pay.html.twig', [
+            'reservation' => $reservation,
+        ]);
+        }
+
+
+    }
+    */
 }
