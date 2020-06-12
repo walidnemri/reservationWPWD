@@ -248,7 +248,7 @@ class __TwigTemplate_663d7525f3efe64317c6e39838d3cf438c56ac2f7df16e182a4ee945260
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "body"));
 
         // line 166
-        echo "<form id=\"payment-form\">
+        echo "<form method=\"POST\" id=\"payment-form\">
   <div id=\"card-element\">
     <!-- Elements will create input elements here -->
   </div>
@@ -256,7 +256,7 @@ class __TwigTemplate_663d7525f3efe64317c6e39838d3cf438c56ac2f7df16e182a4ee945260
   <!-- We'll put the error messages in this element -->
   <div id=\"card-errors\" role=\"alert\"></div>
 
-  <button id=\"submit\">Pay</button>
+  <button>Pay</button>
 </form>
 ";
         
@@ -279,7 +279,7 @@ class __TwigTemplate_663d7525f3efe64317c6e39838d3cf438c56ac2f7df16e182a4ee945260
 
         // line 178
         echo " <script>
-  var stripe = Stripe('pk_test_TYooMQauvdEDq54NiTphI7jx');
+  var stripe = Stripe('pk_test_51GqHejLBd5jeN00p7EEAOPcKhl13nx5W02w3h3Nwq7Iykon6ruuexsGrGLJfDlmORGB110rG5VuxuTrDnmZrz0Ae00gffEWVVm');
   var elements = stripe.elements();
 
   var style = {
@@ -300,61 +300,37 @@ class __TwigTemplate_663d7525f3efe64317c6e39838d3cf438c56ac2f7df16e182a4ee945260
     }
   });
 
-  var form = document.getElementById('payment-form');
-
 var form = document.getElementById('payment-form');
+form.addEventListener('submit', function(event) {
+  event.preventDefault();
 
-form.addEventListener('submit', function(ev) {
-  ev.preventDefault();
-  stripe.confirmCardPayment(clientSecret, {
-    payment_method: {
-      card: card,
-      billing_details: {
-        name: 'Jenny Rosen'
-      }
-    }
-  }).then(function(result) {
+  stripe.createToken(card).then(function(result) {
     if (result.error) {
-      // Show error to your customer (e.g., insufficient funds)
-      console.log(result.error.message);
+      // Inform the customer that there was an error.
+      var errorElement = document.getElementById('card-errors');
+      errorElement.textContent = result.error.message;
     } else {
-      // The payment has been processed!
-      if (result.paymentIntent.status === 'succeeded') {
-        // Show a success message to your customer
-        // There's a risk of the customer closing the window before callback
-        // execution. Set up a webhook or plugin to listen for the
-        // payment_intent.succeeded event that handles any business critical
-        // post-payment actions.
-      }
+      // Send the token to your server.
+      stripeTokenHandler(result.token);
     }
   });
-});var form = document.getElementById('payment-form');
+});
 
-  form.addEventListener('submit', function(ev) {
-    ev.preventDefault();
-    stripe.confirmCardPayment(clientSecret, {
-      payment_method: {
-        card: card,
-        billing_details: {
-          name: 'Jenny Rosen'
-        }
-      }
-    }).then(function(result) {
-      if (result.error) {
-        // Show error to your customer (e.g., insufficient funds)
-        console.log(result.error.message);
-      } else {
-        // The payment has been processed!
-        if (result.paymentIntent.status === 'succeeded') {
-          // Show a success message to your customer
-          // There's a risk of the customer closing the window before callback
-          // execution. Set up a webhook or plugin to listen for the
-          // payment_intent.succeeded event that handles any business critical
-          // post-payment actions.
-        }
-      }
-    });
-  });
+function stripeTokenHandler(token) {
+  // Insert the token ID into the form so it gets submitted to the server
+  const formS = document.getElementById('payment-form');
+  var hiddenInput = document.createElement('input');
+  hiddenInput.setAttribute('type', 'hidden');
+  hiddenInput.setAttribute('name', 'stripeToken');
+  hiddenInput.setAttribute('value', token.id);
+  form.appendChild(hiddenInput);
+
+  // Submit the form
+  console.log('form',formS);
+  formS.submit();
+}
+
+
 
  </script>
 ";
@@ -548,7 +524,7 @@ form.addEventListener('submit', function(ev) {
 </style>
 {% endblock %}
 {% block body %}
-<form id=\"payment-form\">
+<form method=\"POST\" id=\"payment-form\">
   <div id=\"card-element\">
     <!-- Elements will create input elements here -->
   </div>
@@ -556,12 +532,12 @@ form.addEventListener('submit', function(ev) {
   <!-- We'll put the error messages in this element -->
   <div id=\"card-errors\" role=\"alert\"></div>
 
-  <button id=\"submit\">Pay</button>
+  <button>Pay</button>
 </form>
 {% endblock %}
 {% block javascripts %}
  <script>
-  var stripe = Stripe('pk_test_TYooMQauvdEDq54NiTphI7jx');
+  var stripe = Stripe('pk_test_51GqHejLBd5jeN00p7EEAOPcKhl13nx5W02w3h3Nwq7Iykon6ruuexsGrGLJfDlmORGB110rG5VuxuTrDnmZrz0Ae00gffEWVVm');
   var elements = stripe.elements();
 
   var style = {
@@ -582,61 +558,37 @@ form.addEventListener('submit', function(ev) {
     }
   });
 
-  var form = document.getElementById('payment-form');
-
 var form = document.getElementById('payment-form');
+form.addEventListener('submit', function(event) {
+  event.preventDefault();
 
-form.addEventListener('submit', function(ev) {
-  ev.preventDefault();
-  stripe.confirmCardPayment(clientSecret, {
-    payment_method: {
-      card: card,
-      billing_details: {
-        name: 'Jenny Rosen'
-      }
-    }
-  }).then(function(result) {
+  stripe.createToken(card).then(function(result) {
     if (result.error) {
-      // Show error to your customer (e.g., insufficient funds)
-      console.log(result.error.message);
+      // Inform the customer that there was an error.
+      var errorElement = document.getElementById('card-errors');
+      errorElement.textContent = result.error.message;
     } else {
-      // The payment has been processed!
-      if (result.paymentIntent.status === 'succeeded') {
-        // Show a success message to your customer
-        // There's a risk of the customer closing the window before callback
-        // execution. Set up a webhook or plugin to listen for the
-        // payment_intent.succeeded event that handles any business critical
-        // post-payment actions.
-      }
+      // Send the token to your server.
+      stripeTokenHandler(result.token);
     }
   });
-});var form = document.getElementById('payment-form');
+});
 
-  form.addEventListener('submit', function(ev) {
-    ev.preventDefault();
-    stripe.confirmCardPayment(clientSecret, {
-      payment_method: {
-        card: card,
-        billing_details: {
-          name: 'Jenny Rosen'
-        }
-      }
-    }).then(function(result) {
-      if (result.error) {
-        // Show error to your customer (e.g., insufficient funds)
-        console.log(result.error.message);
-      } else {
-        // The payment has been processed!
-        if (result.paymentIntent.status === 'succeeded') {
-          // Show a success message to your customer
-          // There's a risk of the customer closing the window before callback
-          // execution. Set up a webhook or plugin to listen for the
-          // payment_intent.succeeded event that handles any business critical
-          // post-payment actions.
-        }
-      }
-    });
-  });
+function stripeTokenHandler(token) {
+  // Insert the token ID into the form so it gets submitted to the server
+  const formS = document.getElementById('payment-form');
+  var hiddenInput = document.createElement('input');
+  hiddenInput.setAttribute('type', 'hidden');
+  hiddenInput.setAttribute('name', 'stripeToken');
+  hiddenInput.setAttribute('value', token.id);
+  form.appendChild(hiddenInput);
+
+  // Submit the form
+  console.log('form',formS);
+  formS.submit();
+}
+
+
 
  </script>
 {% endblock %} ", "reservation/pay.html.twig", "/Applications/XAMPP/xamppfiles/htdocs/reservationsWPWD/templates/reservation/pay.html.twig");

@@ -23,6 +23,7 @@ class ShowController extends AbstractController
         return $this->render('show/index.html.twig', [
             'shows' => $shows,
             'resource' => 'spectacles',
+            'current_menu'=>'show'
         ]);
     }
     
@@ -53,6 +54,16 @@ class ShowController extends AbstractController
             //dd($user);
             $entityManager->persist($reservation);
             $entityManager->flush();
+
+            \Stripe\Stripe::setApiKey('sk_test_51GqHejLBd5jeN00p2EomVAAYos5wghT3GVmcvPeo7qTPAX4En8rsvNPTfp6gtALsERSTHTnS3Wl740OtxElpTUkv00c70ZLfLK');
+
+            \Stripe\Charge::create([
+            'amount' => 2000,
+            'currency' => 'eur',
+            'source'=>$request->request->get('stripeToken'),
+            // Verify your integration in this guide by including this parameter
+            
+            ]);
             return $this->render('reservation/pay.html.twig', [
              'reservation' => $reservation,
             ]);

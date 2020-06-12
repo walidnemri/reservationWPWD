@@ -165,7 +165,7 @@ class __TwigTemplate_48146fc60d9a6746b8408c68655ff149da2a5717004b2dee5ae314815a7
         return new Source("{% extends 'base.html.twig' %}
 
 {% block title %}Log in!{% endblock %}
-
+{# form_theme form 'bootstrap_4_layout.html.twig' #}
 {% block body %}
 <form method=\"post\">
     {% if error %}

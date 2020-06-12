@@ -13,7 +13,9 @@ return [
         '/_profiler/search_bar' => [[['_route' => '_profiler_search_bar', '_controller' => 'web_profiler.controller.profiler::searchBarAction'], null, null, null, false, false, null]],
         '/_profiler/phpinfo' => [[['_route' => '_profiler_phpinfo', '_controller' => 'web_profiler.controller.profiler::phpinfoAction'], null, null, null, false, false, null]],
         '/_profiler/open' => [[['_route' => '_profiler_open_file', '_controller' => 'web_profiler.controller.profiler::openAction'], null, null, null, false, false, null]],
+        '/agent' => [[['_route' => 'agent', '_controller' => 'App\\Controller\\AgentController::index'], null, null, null, false, false, null]],
         '/artist' => [[['_route' => 'artist', '_controller' => 'App\\Controller\\ArtistController::index'], null, null, null, false, false, null]],
+        '/' => [[['_route' => 'home', '_controller' => 'App\\Controller\\HomeController::index'], null, null, null, false, false, null]],
         '/locality' => [[['_route' => 'locality_index', '_controller' => 'App\\Controller\\LocalityController::index'], null, ['GET' => 0], null, true, false, null]],
         '/locality/new' => [[['_route' => 'locality_new', '_controller' => 'App\\Controller\\LocalityController::new'], null, ['GET' => 0, 'POST' => 1], null, false, false, null]],
         '/representation' => [[['_route' => 'representation', '_controller' => 'App\\Controller\\RepresentationController::index'], null, null, null, false, false, null]],
@@ -45,29 +47,32 @@ return [
                         .'|(*:159)'
                     .')'
                 .')'
-                .'|/artist/([^/]++)(*:185)'
+                .'|/a(?'
+                    .'|gent/([^/]++)/transfert/([^/]++)(*:206)'
+                    .'|rtist/([^/]++)(*:228)'
+                .')'
                 .'|/locality/([^/]++)(?'
-                    .'|(*:214)'
-                    .'|/edit(*:227)'
-                    .'|(*:235)'
+                    .'|(*:258)'
+                    .'|/edit(*:271)'
+                    .'|(*:279)'
                 .')'
                 .'|/r(?'
                     .'|e(?'
-                        .'|presentation/([^/]++)(*:274)'
+                        .'|presentation/([^/]++)(*:318)'
                         .'|servation/([^/]++)(?'
-                            .'|(*:303)'
-                            .'|/edit(*:316)'
-                            .'|(*:324)'
+                            .'|(*:347)'
+                            .'|/edit(*:360)'
+                            .'|(*:368)'
                         .')'
                     .')'
-                    .'|ole/([^/]++)(*:346)'
+                    .'|ole/([^/]++)(*:390)'
                 .')'
-                .'|/show/([^/]++)(*:369)'
-                .'|/type/([^/]++)(*:391)'
+                .'|/show/([^/]++)(*:413)'
+                .'|/type/([^/]++)(*:435)'
                 .'|/user/([^/]++)(?'
-                    .'|(*:416)'
-                    .'|/edit(*:429)'
-                    .'|(*:437)'
+                    .'|(*:460)'
+                    .'|/edit(*:473)'
+                    .'|(*:481)'
                 .')'
             .')/?$}sDu',
     ],
@@ -79,20 +84,21 @@ return [
         136 => [[['_route' => '_profiler_exception', '_controller' => 'web_profiler.controller.exception_panel::body'], ['token'], null, null, false, false, null]],
         149 => [[['_route' => '_profiler_exception_css', '_controller' => 'web_profiler.controller.exception_panel::stylesheet'], ['token'], null, null, false, false, null]],
         159 => [[['_route' => '_profiler', '_controller' => 'web_profiler.controller.profiler::panelAction'], ['token'], null, null, false, true, null]],
-        185 => [[['_route' => 'artist_show', '_controller' => 'App\\Controller\\ArtistController::show'], ['id'], null, null, false, true, null]],
-        214 => [[['_route' => 'locality_show', '_controller' => 'App\\Controller\\LocalityController::show'], ['id'], ['GET' => 0], null, false, true, null]],
-        227 => [[['_route' => 'locality_edit', '_controller' => 'App\\Controller\\LocalityController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
-        235 => [[['_route' => 'locality_delete', '_controller' => 'App\\Controller\\LocalityController::delete'], ['id'], ['DELETE' => 0], null, false, true, null]],
-        274 => [[['_route' => 'representation_show', '_controller' => 'App\\Controller\\RepresentationController::show'], ['id'], null, null, false, true, null]],
-        303 => [[['_route' => 'reservation_show', '_controller' => 'App\\Controller\\ReservationController::show'], ['id'], ['GET' => 0], null, false, true, null]],
-        316 => [[['_route' => 'reservation_edit', '_controller' => 'App\\Controller\\ReservationController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
-        324 => [[['_route' => 'reservation_delete', '_controller' => 'App\\Controller\\ReservationController::delete'], ['id'], ['DELETE' => 0], null, false, true, null]],
-        346 => [[['_route' => 'role_show', '_controller' => 'App\\Controller\\RoleController::show'], ['id'], null, null, false, true, null]],
-        369 => [[['_route' => 'show_show', '_controller' => 'App\\Controller\\ShowController::show'], ['id'], null, null, false, true, null]],
-        391 => [[['_route' => 'type_show', '_controller' => 'App\\Controller\\TypeController::show'], ['id'], null, null, false, true, null]],
-        416 => [[['_route' => 'user_show', '_controller' => 'App\\Controller\\UserController::show'], ['id'], ['GET' => 0], null, false, true, null]],
-        429 => [[['_route' => 'user_edit', '_controller' => 'App\\Controller\\UserController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
-        437 => [
+        206 => [[['_route' => 'agent_transfert', '_controller' => 'App\\Controller\\AgentController::transfert'], ['id', 'artistId'], ['GET' => 0, 'POST' => 1], null, false, true, null]],
+        228 => [[['_route' => 'artist_show', '_controller' => 'App\\Controller\\ArtistController::show'], ['id'], null, null, false, true, null]],
+        258 => [[['_route' => 'locality_show', '_controller' => 'App\\Controller\\LocalityController::show'], ['id'], ['GET' => 0], null, false, true, null]],
+        271 => [[['_route' => 'locality_edit', '_controller' => 'App\\Controller\\LocalityController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
+        279 => [[['_route' => 'locality_delete', '_controller' => 'App\\Controller\\LocalityController::delete'], ['id'], ['DELETE' => 0], null, false, true, null]],
+        318 => [[['_route' => 'representation_show', '_controller' => 'App\\Controller\\RepresentationController::show'], ['id'], null, null, false, true, null]],
+        347 => [[['_route' => 'reservation_show', '_controller' => 'App\\Controller\\ReservationController::show'], ['id'], ['GET' => 0], null, false, true, null]],
+        360 => [[['_route' => 'reservation_edit', '_controller' => 'App\\Controller\\ReservationController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
+        368 => [[['_route' => 'reservation_delete', '_controller' => 'App\\Controller\\ReservationController::delete'], ['id'], ['DELETE' => 0], null, false, true, null]],
+        390 => [[['_route' => 'role_show', '_controller' => 'App\\Controller\\RoleController::show'], ['id'], null, null, false, true, null]],
+        413 => [[['_route' => 'show_show', '_controller' => 'App\\Controller\\ShowController::show'], ['id'], null, null, false, true, null]],
+        435 => [[['_route' => 'type_show', '_controller' => 'App\\Controller\\TypeController::show'], ['id'], null, null, false, true, null]],
+        460 => [[['_route' => 'user_show', '_controller' => 'App\\Controller\\UserController::show'], ['id'], ['GET' => 0], null, false, true, null]],
+        473 => [[['_route' => 'user_edit', '_controller' => 'App\\Controller\\UserController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
+        481 => [
             [['_route' => 'user_delete', '_controller' => 'App\\Controller\\UserController::delete'], ['id'], ['DELETE' => 0], null, false, true, null],
             [null, null, null, null, false, false, 0],
         ],

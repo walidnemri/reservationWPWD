@@ -86,68 +86,71 @@ class __TwigTemplate_7b9ce2bb8c4e0c96986b4038c4c87035498575f3d2d52a52e0199926fca
 
         // line 6
         echo "    <h1>Reservation index</h1>
-
-    <ul>
-        ";
-        // line 9
+    <div class=\"row\">
+        <div class=\"col-md-4\">
+            <ul class=\"list-group\">
+                ";
+        // line 10
         $context['_parent'] = $context;
-        $context['_seq'] = twig_ensure_traversable((isset($context["reservations"]) || array_key_exists("reservations", $context) ? $context["reservations"] : (function () { throw new RuntimeError('Variable "reservations" does not exist.', 9, $this->source); })()));
+        $context['_seq'] = twig_ensure_traversable((isset($context["reservations"]) || array_key_exists("reservations", $context) ? $context["reservations"] : (function () { throw new RuntimeError('Variable "reservations" does not exist.', 10, $this->source); })()));
         $context['_iterated'] = false;
         foreach ($context['_seq'] as $context["_key"] => $context["groups"]) {
-            // line 10
-            echo "            <li>
-                <ul>";
             // line 11
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, $context["groups"], 0, [], "any", false, false, false, 11), "user", [], "any", false, false, false, 11), "firstname", [], "any", false, false, false, 11), "html", null, true);
-            echo " ";
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, $context["groups"], 0, [], "any", false, false, false, 11), "user", [], "any", false, false, false, 11), "lastname", [], "any", false, false, false, 11), "html", null, true);
-            echo "
-                ";
+            echo "                    <li class=\"list-group-item\">
+                        <ul class=\"list-group\">";
             // line 12
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, $context["groups"], 0, [], "any", false, false, false, 12), "user", [], "any", false, false, false, 12), "firstname", [], "any", false, false, false, 12), "html", null, true);
+            echo " ";
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, $context["groups"], 0, [], "any", false, false, false, 12), "user", [], "any", false, false, false, 12), "lastname", [], "any", false, false, false, 12), "html", null, true);
+            echo "
+                        ";
+            // line 13
             $context['_parent'] = $context;
             $context['_seq'] = twig_ensure_traversable($context["groups"]);
             foreach ($context['_seq'] as $context["_key"] => $context["reservation"]) {
-                // line 13
-                echo "                    <li>
-                        <span class=\"alert alert-primary\">";
                 // line 14
-                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, $context["reservation"], "representation", [], "any", false, false, false, 14), "theShow", [], "any", false, false, false, 14), "title", [], "any", false, false, false, 14), "html", null, true);
-                echo "</span> (";
-                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["reservation"], "places", [], "any", false, false, false, 14), "html", null, true);
-                echo " places)
-                        <a href=\"";
+                echo "                            <li class=\"list-group-item\">
+                                <div>";
                 // line 15
-                echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("reservation_show", ["id" => twig_get_attribute($this->env, $this->source, $context["reservation"], "id", [], "any", false, false, false, 15)]), "html", null, true);
-                echo "\">show</a>
-                        <a href=\"";
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, $context["reservation"], "representation", [], "any", false, false, false, 15), "theShow", [], "any", false, false, false, 15), "title", [], "any", false, false, false, 15), "html", null, true);
+                echo "</div> (";
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["reservation"], "places", [], "any", false, false, false, 15), "html", null, true);
+                echo " places)
+                                <a href=\"";
                 // line 16
-                echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("reservation_edit", ["id" => twig_get_attribute($this->env, $this->source, $context["reservation"], "id", [], "any", false, false, false, 16)]), "html", null, true);
+                echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("reservation_show", ["id" => twig_get_attribute($this->env, $this->source, $context["reservation"], "id", [], "any", false, false, false, 16)]), "html", null, true);
+                echo "\">show</a>
+                                <a href=\"";
+                // line 17
+                echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("reservation_edit", ["id" => twig_get_attribute($this->env, $this->source, $context["reservation"], "id", [], "any", false, false, false, 17)]), "html", null, true);
                 echo "\">edit</a>
-                    </li>
-                ";
+                            </li>
+                        ";
             }
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['reservation'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 19
-            echo "                </ul>
-            </li>
-        ";
+            // line 20
+            echo "                        </ul>
+                    </li>
+                ";
             $context['_iterated'] = true;
         }
         if (!$context['_iterated']) {
-            // line 22
-            echo "            <li>no records found</li>
-        ";
+            // line 23
+            echo "                    <li>no records found</li>
+                ";
         }
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['groups'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 24
-        echo "    </ul>
+        // line 25
+        echo "            </ul>
+        </div>
+    </div>
 
     <a href=\"";
-        // line 26
+        // line 29
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("reservation_new");
         echo "\">Create new</a>
 ";
@@ -171,7 +174,7 @@ class __TwigTemplate_7b9ce2bb8c4e0c96986b4038c4c87035498575f3d2d52a52e0199926fca
 
     public function getDebugInfo()
     {
-        return array (  151 => 26,  147 => 24,  140 => 22,  133 => 19,  124 => 16,  120 => 15,  114 => 14,  111 => 13,  107 => 12,  101 => 11,  98 => 10,  93 => 9,  88 => 6,  78 => 5,  59 => 3,  36 => 1,);
+        return array (  154 => 29,  148 => 25,  141 => 23,  134 => 20,  125 => 17,  121 => 16,  115 => 15,  112 => 14,  108 => 13,  102 => 12,  99 => 11,  94 => 10,  88 => 6,  78 => 5,  59 => 3,  36 => 1,);
     }
 
     public function getSourceContext()
@@ -182,24 +185,27 @@ class __TwigTemplate_7b9ce2bb8c4e0c96986b4038c4c87035498575f3d2d52a52e0199926fca
 
 {% block body %}
     <h1>Reservation index</h1>
-
-    <ul>
-        {% for groups in reservations %}
-            <li>
-                <ul>{{ groups.0.user.firstname }} {{ groups.0.user.lastname }}
-                {% for reservation in groups %}
-                    <li>
-                        <span class=\"alert alert-primary\">{{ reservation.representation.theShow.title }}</span> ({{ reservation.places }} places)
-                        <a href=\"{{ path('reservation_show', {'id': reservation.id}) }}\">show</a>
-                        <a href=\"{{ path('reservation_edit', {'id': reservation.id}) }}\">edit</a>
+    <div class=\"row\">
+        <div class=\"col-md-4\">
+            <ul class=\"list-group\">
+                {% for groups in reservations %}
+                    <li class=\"list-group-item\">
+                        <ul class=\"list-group\">{{ groups.0.user.firstname }} {{ groups.0.user.lastname }}
+                        {% for reservation in groups %}
+                            <li class=\"list-group-item\">
+                                <div>{{ reservation.representation.theShow.title }}</div> ({{ reservation.places }} places)
+                                <a href=\"{{ path('reservation_show', {'id': reservation.id}) }}\">show</a>
+                                <a href=\"{{ path('reservation_edit', {'id': reservation.id}) }}\">edit</a>
+                            </li>
+                        {% endfor %}
+                        </ul>
                     </li>
+                {% else %}
+                    <li>no records found</li>
                 {% endfor %}
-                </ul>
-            </li>
-        {% else %}
-            <li>no records found</li>
-        {% endfor %}
-    </ul>
+            </ul>
+        </div>
+    </div>
 
     <a href=\"{{ path('reservation_new') }}\">Create new</a>
 {% endblock %}

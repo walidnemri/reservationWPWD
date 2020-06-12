@@ -290,4 +290,15 @@ class Representation extends \App\Entity\Representation implements \Doctrine\ORM
         return parent::removeReservation($reservation);
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    public function __toString()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, '__toString', []);
+
+        return parent::__toString();
+    }
+
 }

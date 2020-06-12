@@ -4,24 +4,27 @@
 
 {% block body %}
     <h1>Reservation index</h1>
-
-    <ul>
-        {% for groups in reservations %}
-            <li>
-                <ul>{{ groups.0.user.firstname }} {{ groups.0.user.lastname }}
-                {% for reservation in groups %}
-                    <li>
-                        <span class="alert alert-primary">{{ reservation.representation.theShow.title }}</span> ({{ reservation.places }} places)
-                        <a href="{{ path('reservation_show', {'id': reservation.id}) }}">show</a>
-                        <a href="{{ path('reservation_edit', {'id': reservation.id}) }}">edit</a>
+    <div class="row">
+        <div class="col-md-4">
+            <ul class="list-group">
+                {% for groups in reservations %}
+                    <li class="list-group-item">
+                        <ul class="list-group">{{ groups.0.user.firstname }} {{ groups.0.user.lastname }}
+                        {% for reservation in groups %}
+                            <li class="list-group-item">
+                                <div>{{ reservation.representation.theShow.title }}</div> ({{ reservation.places }} places)
+                                <a href="{{ path('reservation_show', {'id': reservation.id}) }}">show</a>
+                                <a href="{{ path('reservation_edit', {'id': reservation.id}) }}">edit</a>
+                            </li>
+                        {% endfor %}
+                        </ul>
                     </li>
+                {% else %}
+                    <li>no records found</li>
                 {% endfor %}
-                </ul>
-            </li>
-        {% else %}
-            <li>no records found</li>
-        {% endfor %}
-    </ul>
+            </ul>
+        </div>
+    </div>
 
     <a href="{{ path('reservation_new') }}">Create new</a>
 {% endblock %}

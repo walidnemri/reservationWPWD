@@ -66,10 +66,10 @@ class Artist extends \App\Entity\Artist implements \Doctrine\ORM\Proxy\Proxy
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', '' . "\0" . 'App\\Entity\\Artist' . "\0" . 'id', '' . "\0" . 'App\\Entity\\Artist' . "\0" . 'firstname', '' . "\0" . 'App\\Entity\\Artist' . "\0" . 'lastname', '' . "\0" . 'App\\Entity\\Artist' . "\0" . 'artistTypes'];
+            return ['__isInitialized__', '' . "\0" . 'App\\Entity\\Artist' . "\0" . 'id', '' . "\0" . 'App\\Entity\\Artist' . "\0" . 'firstname', '' . "\0" . 'App\\Entity\\Artist' . "\0" . 'lastname', '' . "\0" . 'App\\Entity\\Artist' . "\0" . 'artistTypes', '' . "\0" . 'App\\Entity\\Artist' . "\0" . 'agent'];
         }
 
-        return ['__isInitialized__', '' . "\0" . 'App\\Entity\\Artist' . "\0" . 'id', '' . "\0" . 'App\\Entity\\Artist' . "\0" . 'firstname', '' . "\0" . 'App\\Entity\\Artist' . "\0" . 'lastname', '' . "\0" . 'App\\Entity\\Artist' . "\0" . 'artistTypes'];
+        return ['__isInitialized__', '' . "\0" . 'App\\Entity\\Artist' . "\0" . 'id', '' . "\0" . 'App\\Entity\\Artist' . "\0" . 'firstname', '' . "\0" . 'App\\Entity\\Artist' . "\0" . 'lastname', '' . "\0" . 'App\\Entity\\Artist' . "\0" . 'artistTypes', '' . "\0" . 'App\\Entity\\Artist' . "\0" . 'agent'];
     }
 
     /**
@@ -277,6 +277,28 @@ class Artist extends \App\Entity\Artist implements \Doctrine\ORM\Proxy\Proxy
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'removeArtistType', [$artistType]);
 
         return parent::removeArtistType($artistType);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getAgent(): ?\App\Entity\Agent
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getAgent', []);
+
+        return parent::getAgent();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setAgent(?\App\Entity\Agent $agent): \App\Entity\Artist
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setAgent', [$agent]);
+
+        return parent::setAgent($agent);
     }
 
 }

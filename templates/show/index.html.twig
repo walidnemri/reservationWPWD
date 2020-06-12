@@ -4,10 +4,11 @@
 
 {% block body %}
     <h1>Liste des {{ resource }}</h1>
-
-    <ul>
+    <div class="row">
+    <div class="col-md-4">
+    <ul class="list-group">
     {% for show in shows %}
-        <li>{{ show.title }}
+        <li class="list-group-item">{{ show.title }}
             {% if show.bookable %}
             <span>{{ show.price }} €</span>
             {% endif %}
@@ -19,7 +20,10 @@
             {% else %}
             - <em>aucune représentation</em>
             {% endif %}
+            <a href="{{path('show_show',{id:show.id})}}" class="btn btn-primary">detail</a>
         </li>
     {% endfor %}
     </ul>
+    </div>
+    </div>
 {% endblock %}
