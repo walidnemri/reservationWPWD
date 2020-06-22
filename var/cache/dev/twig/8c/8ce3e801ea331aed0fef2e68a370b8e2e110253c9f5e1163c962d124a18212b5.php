@@ -61,7 +61,7 @@ class __TwigTemplate_01c127e1e8d2942d5a5977c805c6d7973617d7217e91ef85cba880225e8
         echo "        <script src=\"https://js.stripe.com/v3/\"></script>
     </head>
     <body>
-        <nav class=\"navbar navbar-expand-lg navbar-dark bg-primary\">
+        <nav class=\"navbar navbar-expand-lg navbar-dark bg-dark\">
             <a class=\"navbar-brand\" href=\"";
         // line 15
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("home");
@@ -232,7 +232,7 @@ class __TwigTemplate_01c127e1e8d2942d5a5977c805c6d7973617d7217e91ef85cba880225e8
         <script src=\"https://js.stripe.com/v3/\"></script>
     </head>
     <body>
-        <nav class=\"navbar navbar-expand-lg navbar-dark bg-primary\">
+        <nav class=\"navbar navbar-expand-lg navbar-dark bg-dark\">
             <a class=\"navbar-brand\" href=\"{{ path ('home')}}\">Reservation</a>
             <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">
                 <span class=\"navbar-toggler-icon\"></span>

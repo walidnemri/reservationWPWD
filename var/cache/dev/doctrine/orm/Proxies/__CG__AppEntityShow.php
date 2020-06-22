@@ -66,10 +66,10 @@ class Show extends \App\Entity\Show implements \Doctrine\ORM\Proxy\Proxy
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', '' . "\0" . 'App\\Entity\\Show' . "\0" . 'id', '' . "\0" . 'App\\Entity\\Show' . "\0" . 'slug', '' . "\0" . 'App\\Entity\\Show' . "\0" . 'title', '' . "\0" . 'App\\Entity\\Show' . "\0" . 'description', '' . "\0" . 'App\\Entity\\Show' . "\0" . 'poster_url', '' . "\0" . 'App\\Entity\\Show' . "\0" . 'location', '' . "\0" . 'App\\Entity\\Show' . "\0" . 'bookable', '' . "\0" . 'App\\Entity\\Show' . "\0" . 'price', '' . "\0" . 'App\\Entity\\Show' . "\0" . 'representations', '' . "\0" . 'App\\Entity\\Show' . "\0" . 'artistTypes'];
+            return ['__isInitialized__', '' . "\0" . 'App\\Entity\\Show' . "\0" . 'id', '' . "\0" . 'App\\Entity\\Show' . "\0" . 'slug', '' . "\0" . 'App\\Entity\\Show' . "\0" . 'title', '' . "\0" . 'App\\Entity\\Show' . "\0" . 'description', '' . "\0" . 'App\\Entity\\Show' . "\0" . 'poster_url', '' . "\0" . 'App\\Entity\\Show' . "\0" . 'location', '' . "\0" . 'App\\Entity\\Show' . "\0" . 'bookable', '' . "\0" . 'App\\Entity\\Show' . "\0" . 'price', '' . "\0" . 'App\\Entity\\Show' . "\0" . 'representations', '' . "\0" . 'App\\Entity\\Show' . "\0" . 'artistTypes', '' . "\0" . 'App\\Entity\\Show' . "\0" . 'comments'];
         }
 
-        return ['__isInitialized__', '' . "\0" . 'App\\Entity\\Show' . "\0" . 'id', '' . "\0" . 'App\\Entity\\Show' . "\0" . 'slug', '' . "\0" . 'App\\Entity\\Show' . "\0" . 'title', '' . "\0" . 'App\\Entity\\Show' . "\0" . 'description', '' . "\0" . 'App\\Entity\\Show' . "\0" . 'poster_url', '' . "\0" . 'App\\Entity\\Show' . "\0" . 'location', '' . "\0" . 'App\\Entity\\Show' . "\0" . 'bookable', '' . "\0" . 'App\\Entity\\Show' . "\0" . 'price', '' . "\0" . 'App\\Entity\\Show' . "\0" . 'representations', '' . "\0" . 'App\\Entity\\Show' . "\0" . 'artistTypes'];
+        return ['__isInitialized__', '' . "\0" . 'App\\Entity\\Show' . "\0" . 'id', '' . "\0" . 'App\\Entity\\Show' . "\0" . 'slug', '' . "\0" . 'App\\Entity\\Show' . "\0" . 'title', '' . "\0" . 'App\\Entity\\Show' . "\0" . 'description', '' . "\0" . 'App\\Entity\\Show' . "\0" . 'poster_url', '' . "\0" . 'App\\Entity\\Show' . "\0" . 'location', '' . "\0" . 'App\\Entity\\Show' . "\0" . 'bookable', '' . "\0" . 'App\\Entity\\Show' . "\0" . 'price', '' . "\0" . 'App\\Entity\\Show' . "\0" . 'representations', '' . "\0" . 'App\\Entity\\Show' . "\0" . 'artistTypes', '' . "\0" . 'App\\Entity\\Show' . "\0" . 'comments'];
     }
 
     /**
@@ -409,6 +409,39 @@ class Show extends \App\Entity\Show implements \Doctrine\ORM\Proxy\Proxy
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'removeArtistType', [$artistType]);
 
         return parent::removeArtistType($artistType);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getComments(): \Doctrine\Common\Collections\Collection
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getComments', []);
+
+        return parent::getComments();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function addComment(\App\Entity\Comment $comment): \App\Entity\Show
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'addComment', [$comment]);
+
+        return parent::addComment($comment);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function removeComment(\App\Entity\Comment $comment): \App\Entity\Show
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'removeComment', [$comment]);
+
+        return parent::removeComment($comment);
     }
 
 }

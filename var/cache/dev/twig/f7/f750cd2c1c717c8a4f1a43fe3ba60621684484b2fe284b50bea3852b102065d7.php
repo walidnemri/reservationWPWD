@@ -85,64 +85,75 @@ class __TwigTemplate_b67345cb78b92c415f6bc45612cc0d1dab406a8fb1cf4ad0b87e9428596
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "body"));
 
         // line 6
-        echo "    <h1>Liste des ";
-        echo twig_escape_filter($this->env, (isset($context["resource"]) || array_key_exists("resource", $context) ? $context["resource"] : (function () { throw new RuntimeError('Variable "resource" does not exist.', 6, $this->source); })()), "html", null, true);
-        echo "</h1>
-    <div class=\"row\">
-    <div class=\"col-md-4\">
-    <ul class=\"list-group\">
-    ";
-        // line 10
+        echo "    <div class=\"container mt-4\">
+        <form class=\"form-inline my-2 my-lg-0\" method=\"GET\" name=\"searchForm\">
+            <input class=\"form-control mr-sm-2\" type=\"search\" name=\"search\" placeholder=\"Search\">
+            <button class=\"btn btn-outline-success my-2 my-sm-0\" type=\"submit\">Search</button>
+        </form>
+    </div>
+    <div class=\"container mt-4\">
+        <div class=\"row flex\">
+            ";
+        // line 14
         $context['_parent'] = $context;
-        $context['_seq'] = twig_ensure_traversable((isset($context["shows"]) || array_key_exists("shows", $context) ? $context["shows"] : (function () { throw new RuntimeError('Variable "shows" does not exist.', 10, $this->source); })()));
+        $context['_seq'] = twig_ensure_traversable((isset($context["shows"]) || array_key_exists("shows", $context) ? $context["shows"] : (function () { throw new RuntimeError('Variable "shows" does not exist.', 14, $this->source); })()));
         foreach ($context['_seq'] as $context["_key"] => $context["show"]) {
-            // line 11
-            echo "        <li class=\"list-group-item\">";
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["show"], "title", [], "any", false, false, false, 11), "html", null, true);
-            echo "
-            ";
-            // line 12
-            if (twig_get_attribute($this->env, $this->source, $context["show"], "bookable", [], "any", false, false, false, 12)) {
-                // line 13
-                echo "            <span>";
-                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["show"], "price", [], "any", false, false, false, 13), "html", null, true);
-                echo " €</span>
-            ";
-            }
             // line 15
-            echo "            
-            ";
-            // line 16
-            if (0 === twig_compare(twig_length_filter($this->env, twig_get_attribute($this->env, $this->source, $context["show"], "representations", [], "any", false, false, false, 16)), 1)) {
-                // line 17
-                echo "            - <span>1 représentation</span>
-            ";
-            } elseif (1 === twig_compare(twig_length_filter($this->env, twig_get_attribute($this->env, $this->source,             // line 18
-$context["show"], "representations", [], "any", false, false, false, 18)), 1)) {
-                // line 19
-                echo "            - <span>";
-                echo twig_escape_filter($this->env, twig_length_filter($this->env, twig_get_attribute($this->env, $this->source, $context["show"], "representations", [], "any", false, false, false, 19)), "html", null, true);
-                echo " représentations</span>
-            ";
-            } else {
+            echo "            <div class=\"col-3\">
+                <div class=\"card\" style=\"width: 15rem; height: 336px\">
+                    <img class=\"card-img-top\" src=\"";
+            // line 17
+            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl(("images/" . twig_get_attribute($this->env, $this->source, $context["show"], "posterUrl", [], "any", false, false, false, 17))), "html", null, true);
+            echo "\" alt=\"Card image cap\" style=\"height: 180px\">
+                    <div class=\"card-body\">
+                        <h5 class=\"card-title\">";
+            // line 19
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["show"], "title", [], "any", false, false, false, 19), "html", null, true);
+            echo "</h5>
+                        ";
+            // line 20
+            if (0 === twig_compare(twig_length_filter($this->env, twig_get_attribute($this->env, $this->source, $context["show"], "representations", [], "any", false, false, false, 20)), 1)) {
                 // line 21
-                echo "            - <em>aucune représentation</em>
-            ";
+                echo "                        <p class=\"card-text\"> 1 representation</p>
+                        ";
             }
             // line 23
-            echo "            <a href=\"";
-            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("show_show", ["id" => twig_get_attribute($this->env, $this->source, $context["show"], "id", [], "any", false, false, false, 23)]), "html", null, true);
+            echo "                        ";
+            if (1 === twig_compare(twig_length_filter($this->env, twig_get_attribute($this->env, $this->source, $context["show"], "representations", [], "any", false, false, false, 23)), 1)) {
+                // line 24
+                echo "                        <p class=\"card-text\"> ";
+                echo twig_escape_filter($this->env, twig_length_filter($this->env, twig_get_attribute($this->env, $this->source, $context["show"], "representations", [], "any", false, false, false, 24)), "html", null, true);
+                echo " representations</p>
+                        ";
+            }
+            // line 26
+            echo "                        ";
+            if (-1 === twig_compare(twig_length_filter($this->env, twig_get_attribute($this->env, $this->source, $context["show"], "representations", [], "any", false, false, false, 26)), 1)) {
+                // line 27
+                echo "                        <p class=\"card-text\"> aucune representation</p>
+                        ";
+            }
+            // line 29
+            echo "                        <div class=\"container\">
+                            <a href=\"";
+            // line 30
+            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("show_show", ["id" => twig_get_attribute($this->env, $this->source, $context["show"], "id", [], "any", false, false, false, 30)]), "html", null, true);
             echo "\" class=\"btn btn-primary\">detail</a>
-        </li>
-    ";
+                            <a href=\"#\" class=\"btn btn-primary\">reserver</a>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+            ";
         }
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['show'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 26
-        echo "    </ul>
+        // line 38
+        echo "        </div>
     </div>
-    </div>
+
 ";
         
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->leave($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof);
@@ -164,7 +175,7 @@ $context["show"], "representations", [], "any", false, false, false, 18)), 1)) {
 
     public function getDebugInfo()
     {
-        return array (  143 => 26,  133 => 23,  129 => 21,  123 => 19,  121 => 18,  118 => 17,  116 => 16,  113 => 15,  107 => 13,  105 => 12,  100 => 11,  96 => 10,  88 => 6,  78 => 5,  59 => 3,  36 => 1,);
+        return array (  154 => 38,  140 => 30,  137 => 29,  133 => 27,  130 => 26,  124 => 24,  121 => 23,  117 => 21,  115 => 20,  111 => 19,  106 => 17,  102 => 15,  98 => 14,  88 => 6,  78 => 5,  59 => 3,  36 => 1,);
     }
 
     public function getSourceContext()
@@ -174,29 +185,41 @@ $context["show"], "representations", [], "any", false, false, false, 18)), 1)) {
 {% block title %}Liste des spectacles{% endblock %}
 
 {% block body %}
-    <h1>Liste des {{ resource }}</h1>
-    <div class=\"row\">
-    <div class=\"col-md-4\">
-    <ul class=\"list-group\">
-    {% for show in shows %}
-        <li class=\"list-group-item\">{{ show.title }}
-            {% if show.bookable %}
-            <span>{{ show.price }} €</span>
-            {% endif %}
-            
-            {% if show.representations|length==1 %}
-            - <span>1 représentation</span>
-            {% elseif show.representations|length>1 %}
-            - <span>{{ show.representations|length }} représentations</span>
-            {% else %}
-            - <em>aucune représentation</em>
-            {% endif %}
-            <a href=\"{{path('show_show',{id:show.id})}}\" class=\"btn btn-primary\">detail</a>
-        </li>
-    {% endfor %}
-    </ul>
+    <div class=\"container mt-4\">
+        <form class=\"form-inline my-2 my-lg-0\" method=\"GET\" name=\"searchForm\">
+            <input class=\"form-control mr-sm-2\" type=\"search\" name=\"search\" placeholder=\"Search\">
+            <button class=\"btn btn-outline-success my-2 my-sm-0\" type=\"submit\">Search</button>
+        </form>
     </div>
+    <div class=\"container mt-4\">
+        <div class=\"row flex\">
+            {% for show in shows %}
+            <div class=\"col-3\">
+                <div class=\"card\" style=\"width: 15rem; height: 336px\">
+                    <img class=\"card-img-top\" src=\"{{  asset('images/' ~ show.posterUrl )}}\" alt=\"Card image cap\" style=\"height: 180px\">
+                    <div class=\"card-body\">
+                        <h5 class=\"card-title\">{{ show.title }}</h5>
+                        {% if show.representations|length == 1 %}
+                        <p class=\"card-text\"> 1 representation</p>
+                        {% endif %}
+                        {% if show.representations|length > 1 %}
+                        <p class=\"card-text\"> {{show.representations|length}} representations</p>
+                        {% endif %}
+                        {% if show.representations|length < 1 %}
+                        <p class=\"card-text\"> aucune representation</p>
+                        {% endif %}
+                        <div class=\"container\">
+                            <a href=\"{{path('show_show',{id:show.id})}}\" class=\"btn btn-primary\">detail</a>
+                            <a href=\"#\" class=\"btn btn-primary\">reserver</a>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
     </div>
+
 {% endblock %}
 ", "show/index.html.twig", "/Applications/XAMPP/xamppfiles/htdocs/reservationsWPWD/templates/show/index.html.twig");
     }

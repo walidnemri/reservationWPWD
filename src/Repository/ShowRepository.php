@@ -19,6 +19,15 @@ class ShowRepository extends ServiceEntityRepository
         parent::__construct($registry, Show::class);
     }
 
+    public function filterSearch($search) 
+    {
+        return $this->createQueryBuilder('s')
+            ->andWhere('s.title LIKE :val')
+            ->setParameter('val', '%'.$search.'%')
+            ->getQuery()
+            ->getResult();
+    }
+
     // /**
     //  * @return Show[] Returns an array of Show objects
     //  */

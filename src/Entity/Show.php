@@ -68,10 +68,17 @@ class Show
      */
     private $artistTypes;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="the_show")
+     */
+    private $comments;
+
+
     public function __construct()
     {
         $this->representations = new ArrayCollection();
         $this->artistTypes = new ArrayCollection();
+        $this->comments = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -215,6 +222,37 @@ class Show
     {
         if ($this->artistTypes->contains($artistType)) {
             $this->artistTypes->removeElement($artistType);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Comment[]
+     */
+    public function getComments(): Collection
+    {
+        return $this->comments;
+    }
+
+    public function addComment(Comment $comment): self
+    {
+        if (!$this->comments->contains($comment)) {
+            $this->comments[] = $comment;
+            $comment->setTheShow($this);
+        }
+
+        return $this;
+    }
+
+    public function removeComment(Comment $comment): self
+    {
+        if ($this->comments->contains($comment)) {
+            $this->comments->removeElement($comment);
+            // set the owning side to null (unless already changed)
+            if ($comment->getTheShow() === $this) {
+                $comment->setTheShow(null);
+            }
         }
 
         return $this;

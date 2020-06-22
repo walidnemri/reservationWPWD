@@ -322,6 +322,13 @@
         <argument type="service" id=".service_locator.pNNo5z3.App\Controller\ArtistController"/>
       </call>
     </service>
+    <service id="App\Controller\CommentController" class="App\Controller\CommentController" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+      <tag name="container.service_subscriber"/>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.pNNo5z3.App\Controller\CommentController"/>
+      </call>
+    </service>
     <service id="App\Controller\HomeController" class="App\Controller\HomeController" public="true" autowire="true" autoconfigure="true">
       <tag name="controller.service_arguments"/>
       <tag name="container.service_subscriber"/>
@@ -400,6 +407,9 @@
     <service id="App\DataFixtures\ArtistTypeShowFixtures" class="App\DataFixtures\ArtistTypeShowFixtures" autowire="true" autoconfigure="true">
       <tag name="doctrine.fixture.orm"/>
     </service>
+    <service id="App\DataFixtures\CommentFixtures" class="App\DataFixtures\CommentFixtures" autowire="true" autoconfigure="true">
+      <tag name="doctrine.fixture.orm"/>
+    </service>
     <service id="App\DataFixtures\LocalityFixtures" class="App\DataFixtures\LocalityFixtures" autowire="true" autoconfigure="true">
       <tag name="doctrine.fixture.orm"/>
     </service>
@@ -431,6 +441,9 @@
     <service id="App\Form\ArtistType" class="App\Form\ArtistType" autowire="true" autoconfigure="true">
       <tag name="form.type"/>
     </service>
+    <service id="App\Form\CommentType" class="App\Form\CommentType" autowire="true" autoconfigure="true">
+      <tag name="form.type"/>
+    </service>
     <service id="App\Form\LocalityType" class="App\Form\LocalityType" autowire="true" autoconfigure="true">
       <tag name="form.type"/>
     </service>
@@ -452,6 +465,10 @@
       <argument type="service" id="doctrine"/>
     </service>
     <service id="App\Repository\ArtistTypeRepository" class="App\Repository\ArtistTypeRepository" autowire="true" autoconfigure="true">
+      <tag name="doctrine.repository_service"/>
+      <argument type="service" id="doctrine"/>
+    </service>
+    <service id="App\Repository\CommentRepository" class="App\Repository\CommentRepository" autowire="true" autoconfigure="true">
       <tag name="doctrine.repository_service"/>
       <argument type="service" id="doctrine"/>
     </service>
@@ -894,6 +911,7 @@
       </argument>
       <argument type="collection">
         <argument>App\Form\ArtistType</argument>
+        <argument>App\Form\CommentType</argument>
         <argument>App\Form\LocalityType</argument>
         <argument>App\Form\ReservationType</argument>
         <argument>App\Form\User1Type</argument>
@@ -1222,7 +1240,7 @@
       <argument type="service" id="form.registry"/>
     </service>
     <service id="form.extension" class="Symfony\Component\Form\Extension\DependencyInjection\DependencyInjectionExtension" public="false">
-      <argument type="service" id=".service_locator.p.w.QvQ"/>
+      <argument type="service" id=".service_locator.hfLA3TX"/>
       <argument type="collection">
         <argument key="Symfony\Component\Form\Extension\Core\Type\FormType" type="iterator">
           <argument type="service" id="form.type_extension.form.transformation_failure_handling"/>
@@ -3585,7 +3603,7 @@
       <factory class="Doctrine\ORM\EntityManager" method="create"/>
     </service>
     <service id="doctrine.orm.container_repository_factory" class="Doctrine\Bundle\DoctrineBundle\Repository\ContainerRepositoryFactory" public="false">
-      <argument type="service" id=".service_locator.bL5GhzG"/>
+      <argument type="service" id=".service_locator.y5nF3Bo"/>
     </service>
     <service id="doctrine.orm.manager_configurator.abstract" class="Doctrine\Bundle\DoctrineBundle\ManagerConfigurator" abstract="true">
       <argument type="collection"/>
@@ -4842,6 +4860,10 @@
             <argument key="groups" type="collection"/>
           </argument>
           <argument type="collection">
+            <argument key="fixture" type="service" id="App\DataFixtures\CommentFixtures"/>
+            <argument key="groups" type="collection"/>
+          </argument>
+          <argument type="collection">
             <argument key="fixture" type="service" id="App\DataFixtures\LocalityFixtures"/>
             <argument key="groups" type="collection"/>
           </argument>
@@ -4886,6 +4908,9 @@
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\ArtistController" class="App\Controller\ArtistController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\ArtistController" class="App\Controller\ArtistController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\ArtistController" class="App\Controller\ArtistController" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\CommentController" class="App\Controller\CommentController" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\CommentController" class="App\Controller\CommentController" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\CommentController" class="App\Controller\CommentController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\HomeController" class="App\Controller\HomeController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\HomeController" class="App\Controller\HomeController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\HomeController" class="App\Controller\HomeController" autowire="true" autoconfigure="true" abstract="true"/>
@@ -4923,6 +4948,8 @@
     <service id=".abstract.instanceof.App\DataFixtures\ArtistTypeFixtures" class="App\DataFixtures\ArtistTypeFixtures" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\FixturesBundle\ORMFixtureInterface.0.App\DataFixtures\ArtistTypeShowFixtures" class="App\DataFixtures\ArtistTypeShowFixtures" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\DataFixtures\ArtistTypeShowFixtures" class="App\DataFixtures\ArtistTypeShowFixtures" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Doctrine\Bundle\FixturesBundle\ORMFixtureInterface.0.App\DataFixtures\CommentFixtures" class="App\DataFixtures\CommentFixtures" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\DataFixtures\CommentFixtures" class="App\DataFixtures\CommentFixtures" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\FixturesBundle\ORMFixtureInterface.0.App\DataFixtures\LocalityFixtures" class="App\DataFixtures\LocalityFixtures" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\DataFixtures\LocalityFixtures" class="App\DataFixtures\LocalityFixtures" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\FixturesBundle\ORMFixtureInterface.0.App\DataFixtures\LocationFixtures" class="App\DataFixtures\LocationFixtures" autowire="true" abstract="true"/>
@@ -4943,6 +4970,8 @@
     <service id=".abstract.instanceof.App\DataFixtures\UserRoleFixtures" class="App\DataFixtures\UserRoleFixtures" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\ArtistType" class="App\Form\ArtistType" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Form\ArtistType" class="App\Form\ArtistType" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\CommentType" class="App\Form\CommentType" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Form\CommentType" class="App\Form\CommentType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\LocalityType" class="App\Form\LocalityType" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Form\LocalityType" class="App\Form\LocalityType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\ReservationType" class="App\Form\ReservationType" autowire="true" abstract="true"/>
@@ -4957,6 +4986,8 @@
     <service id=".abstract.instanceof.App\Repository\ArtistRepository" class="App\Repository\ArtistRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\ArtistTypeRepository" class="App\Repository\ArtistTypeRepository" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Repository\ArtistTypeRepository" class="App\Repository\ArtistTypeRepository" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\CommentRepository" class="App\Repository\CommentRepository" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Repository\CommentRepository" class="App\Repository\CommentRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\LocalityRepository" class="App\Repository\LocalityRepository" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Repository\LocalityRepository" class="App\Repository\LocalityRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\LocationRepository" class="App\Repository\LocationRepository" autowire="true" abstract="true"/>
@@ -5195,6 +5226,18 @@
         <argument key="artist" type="service" id=".errored..service_locator.dd2XOpi.App\Entity\Artist"/>
       </argument>
     </service>
+    <service id=".service_locator.3kKcuc8" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="commentRepository" type="service" id="App\Repository\CommentRepository"/>
+      </argument>
+    </service>
+    <service id=".service_locator.sZ1FyfD" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="comment" type="service" id=".errored..service_locator.sZ1FyfD.App\Entity\Comment"/>
+      </argument>
+    </service>
     <service id=".service_locator.VoyiNh4" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
@@ -5263,11 +5306,15 @@
         <argument key="user" type="service" id=".errored..service_locator.VPb8Zl0.App\Entity\User"/>
       </argument>
     </service>
-    <service id=".service_locator.c4hCFJz" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id=".service_locator._D97YWH" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Controller\AgentController::index" type="service" id=".service_locator.u4UQ1Uy"/>
         <argument key="App\Controller\ArtistController::show" type="service" id=".service_locator.dd2XOpi"/>
+        <argument key="App\Controller\CommentController::delete" type="service" id=".service_locator.sZ1FyfD"/>
+        <argument key="App\Controller\CommentController::edit" type="service" id=".service_locator.sZ1FyfD"/>
+        <argument key="App\Controller\CommentController::index" type="service" id=".service_locator.3kKcuc8"/>
+        <argument key="App\Controller\CommentController::show" type="service" id=".service_locator.sZ1FyfD"/>
         <argument key="App\Controller\LocalityController::delete" type="service" id=".service_locator.QExU2Dt"/>
         <argument key="App\Controller\LocalityController::edit" type="service" id=".service_locator.QExU2Dt"/>
         <argument key="App\Controller\LocalityController::index" type="service" id=".service_locator.VoyiNh4"/>
@@ -5287,6 +5334,10 @@
         <argument key="App\Controller\UserController::show" type="service" id=".service_locator.VPb8Zl0"/>
         <argument key="App\Controller\AgentController:index" type="service" id=".service_locator.u4UQ1Uy"/>
         <argument key="App\Controller\ArtistController:show" type="service" id=".service_locator.dd2XOpi"/>
+        <argument key="App\Controller\CommentController:delete" type="service" id=".service_locator.sZ1FyfD"/>
+        <argument key="App\Controller\CommentController:edit" type="service" id=".service_locator.sZ1FyfD"/>
+        <argument key="App\Controller\CommentController:index" type="service" id=".service_locator.3kKcuc8"/>
+        <argument key="App\Controller\CommentController:show" type="service" id=".service_locator.sZ1FyfD"/>
         <argument key="App\Controller\LocalityController:delete" type="service" id=".service_locator.QExU2Dt"/>
         <argument key="App\Controller\LocalityController:edit" type="service" id=".service_locator.QExU2Dt"/>
         <argument key="App\Controller\LocalityController:index" type="service" id=".service_locator.VoyiNh4"/>
@@ -5365,10 +5416,11 @@
       <argument type="service" id="debug.argument_resolver.not_tagged_controller.inner"/>
       <argument type="service" id="debug.stopwatch"/>
     </service>
-    <service id=".service_locator.p.w.QvQ" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id=".service_locator.hfLA3TX" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Form\ArtistType" type="service" id="App\Form\ArtistType"/>
+        <argument key="App\Form\CommentType" type="service" id="App\Form\CommentType"/>
         <argument key="App\Form\LocalityType" type="service" id="App\Form\LocalityType"/>
         <argument key="App\Form\ReservationType" type="service" id="App\Form\ReservationType"/>
         <argument key="App\Form\User1Type" type="service" id="App\Form\User1Type"/>
@@ -5390,12 +5442,13 @@
         <argument key="doctrine.orm.default_listeners.attach_entity_listeners" type="service" id="doctrine.orm.default_listeners.attach_entity_listeners"/>
       </argument>
     </service>
-    <service id=".service_locator.bL5GhzG" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id=".service_locator.y5nF3Bo" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Repository\AgentRepository" type="service" id="App\Repository\AgentRepository"/>
         <argument key="App\Repository\ArtistRepository" type="service" id="App\Repository\ArtistRepository"/>
         <argument key="App\Repository\ArtistTypeRepository" type="service" id="App\Repository\ArtistTypeRepository"/>
+        <argument key="App\Repository\CommentRepository" type="service" id="App\Repository\CommentRepository"/>
         <argument key="App\Repository\LocalityRepository" type="service" id="App\Repository\LocalityRepository"/>
         <argument key="App\Repository\LocationRepository" type="service" id="App\Repository\LocationRepository"/>
         <argument key="App\Repository\RepresentationRepository" type="service" id="App\Repository\RepresentationRepository"/>
@@ -5614,6 +5667,12 @@
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.pNNo5z3" method="withContext"/>
     </service>
+    <service id=".service_locator.pNNo5z3.App\Controller\CommentController" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+      <tag name="container.service_locator_context" id="App\Controller\CommentController"/>
+      <argument>App\Controller\CommentController</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.pNNo5z3" method="withContext"/>
+    </service>
     <service id=".service_locator.pNNo5z3.App\Controller\HomeController" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator_context" id="App\Controller\HomeController"/>
       <argument>App\Controller\HomeController</argument>
@@ -5819,12 +5878,12 @@
       <argument type="service" id="security.token_storage"/>
     </service>
     <service id="debug.argument_resolver.service.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver" public="false">
-      <argument type="service" id=".service_locator.c4hCFJz"/>
+      <argument type="service" id=".service_locator._D97YWH"/>
     </service>
     <service id="debug.argument_resolver.default.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver" public="false"/>
     <service id="debug.argument_resolver.variadic.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\VariadicValueResolver" public="false"/>
     <service id="debug.argument_resolver.not_tagged_controller.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver" public="false">
-      <argument type="service" id=".service_locator.c4hCFJz"/>
+      <argument type="service" id=".service_locator._D97YWH"/>
     </service>
     <service id=".debug.http_client.inner" class="Symfony\Contracts\HttpClient\HttpClientInterface" public="false">
       <argument type="collection"/>
@@ -5835,6 +5894,7 @@
       <factory class="Symfony\Component\HttpClient\HttpClient" method="create"/>
     </service>
     <service id=".errored..service_locator.dd2XOpi.App\Entity\Artist" class="App\Entity\Artist"/>
+    <service id=".errored..service_locator.sZ1FyfD.App\Entity\Comment" class="App\Entity\Comment"/>
     <service id=".errored..service_locator.QExU2Dt.App\Entity\Locality" class="App\Entity\Locality"/>
     <service id=".errored..service_locator.vIgRI9F.App\Entity\Reservation" class="App\Entity\Reservation"/>
     <service id=".errored..service_locator.iLtGZiL.App\Entity\Role" class="App\Entity\Role"/>
@@ -6208,7 +6268,7 @@
     <service id="Psr\Log\LoggerInterface" alias="monolog.logger" public="false"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.CmORmuK" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem" public="false"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.c4hCFJz"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator._D97YWH"/>
     <service id="twig.loader" alias="twig.loader.native_filesystem"/>
     <service id="Psr\Log\LoggerInterface $requestLogger" alias="monolog.logger.request"/>
     <service id="Psr\Log\LoggerInterface $consoleLogger" alias="monolog.logger.console"/>

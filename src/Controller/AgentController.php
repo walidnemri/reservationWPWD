@@ -35,7 +35,7 @@ class AgentController extends AbstractController
 
         $user = $this->getUser();
 
-        if(!in_array('admin',$user->getRoles())) {
+        if(!in_array('ROLE_ADMIN',$user->getRoles())) {
             throw new \Exception('Access denied for user without "admin" role.');
         }
         $repository = $this->getDoctrine()->getRepository(Artist::class);

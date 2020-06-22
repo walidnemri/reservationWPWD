@@ -15,11 +15,17 @@ class ShowController extends AbstractController
     /**
      * @Route("/show", name="show")
      */
-    public function index()
+    public function index(Request $request)
     {
         $repository = $this->getDoctrine()->getRepository(Show::class);
         $shows = $repository->findAll();
         
+        //dump($request->query->get('search'));
+        if ($request->query->get('search')) {
+            //dump($request->query['search']);
+            $shows = $repository->filterSearch($request->query->get('search'));
+        }
+        //dump($shows);
         return $this->render('show/index.html.twig', [
             'shows' => $shows,
             'resource' => 'spectacles',
