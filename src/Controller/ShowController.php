@@ -2,23 +2,25 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Show;
 use App\Entity\Reservation;
 use App\Form\ReservationType;
 use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ShowController extends AbstractController
 {
     /**
      * @Route("/show", name="show")
      */
-    public function index(Request $request)
+    public function index(Request $request, PaginatorInterface $paginator)
     {
         $repository = $this->getDoctrine()->getRepository(Show::class);
-        $shows = $repository->findAll();
+        $shows = $paginator->paginate($repository->findQuery(),$request->query->getInt('page', 1),2);
+
         
         //dump($request->query->get('search'));
         if ($request->query->get('search')) {
